@@ -1,30 +1,38 @@
 <template>
-  <div id="nav">
+  <!-- <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
-  </div>
+  </div> -->
   <router-view/>
+
 </template>
 
 <style lang="sass">
 #app
-  font-family: YesevaOne-Regular, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  // font-family: YesevaOne-Regular, sans-serif;
+  width: 100%
+.container
+  width: 920px
+  margin: 0 auto
+html
+    box-sizing: border-box
 
+*, *::before, *::after
+    box-sizing: inherit
 
-#nav
-  padding: 30px;
+a
+    color: inherit
+    text-decoration: none
 
-  a
-    font-weight: bold;
-    color: #2c3e50;
+p
+    margin: 0
 
-    &.router-link-exact-active
-      color: #42b983;
+ul, li
+    list-style: none
+    margin: 0
+    padding: 0
 
-
+h1, h2, h3, h4, h5, h6
+    margin: 0
 
 </style>
