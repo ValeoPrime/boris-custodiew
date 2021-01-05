@@ -1,18 +1,12 @@
 <template>
-  <!-- <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div> -->
   <router-view/>
-
 </template>
 
 <style lang="sass">
 #app
-  // font-family: YesevaOne-Regular, sans-serif;
   width: 100%
 .container
-  width: 920px
+  max-width: 920px
   margin: 0 auto
 html
     box-sizing: border-box
@@ -32,7 +26,7 @@ ul, li
     margin: 0
     padding: 0
 
-h1, h2, h3, h4, h5, h6
+h1, h2, h3, h4, h5, h6, body
     margin: 0
 
 </style>

@@ -38,17 +38,17 @@ export default {
     .ya-share2__icon
         height: 34px
         width: 94px
-        border: 0.7px solid #BFBFBF;
+        border: 1px solid #BFBFBF;
         box-sizing: border-box;
         background-color: transparent
         background-repeat: no-repeat
         background-position: center
-        &:nth-child(1)
-            background-image: url('~@/assets/img/VK.svg')
-        &:nth-child(2)
-            background-image: url('~@/assets/img/Twit.svg')
-        &:nth-child(3)
-            background-image: url('~@/assets/img/Fb.svg')
+    .ya-share2__item_service_vkontakte .ya-share2__icon
+      background-image: url('~@/assets/img/VK.svg')
+    .ya-share2__item_service_facebook .ya-share2__icon
+      background-image: url('~@/assets/img/Twit.svg')
+    .ya-share2__item_service_twitter .ya-share2__icon
+      background-image: url('~@/assets/img/Fb.svg')
 
     .ya-share2__badge
         background-color: transparent
@@ -56,6 +56,12 @@ export default {
         margin-left: 10px
     .ya-share2__list
         display: flex
+@media screen and (max-width: 400px)
+  #ya-share2
+    .ya-share2__icon
+        height: 34px
+        width: 84px
+
 
 
 </style>

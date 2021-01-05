@@ -1,14 +1,20 @@
 <template>
-      <section class="header">
+  <section class="header">
     <div class="header__picture">
       <img
         src="@/assets/img/header-picture.jpg"
         alt="picture"
-        class="header__picture__img"
+        class="header__picture__img header__picture__img--hei"
       />
+      <img
+        src="~@/assets/img/header__min__img.jpg"
+        alt="picture"
+        class="header__picture__img header__picture__img--min"
+      />
+
     </div>
     <div class="header__content">
-      <HeaderNavigation/>
+      <HeaderNavigation />
       <div class="title__wrapper">
         <div class="years__life">
           1878-1927
@@ -21,17 +27,19 @@
           родной природы.
         </p>
       </div>
-      <a class="logo__icon"  href="#" target="_blank"><img src="@/assets/img/logo.svg" alt="logo" /></a>
+      <a class="logo__icon" href="#" target="_blank"
+        ><img src="@/assets/img/logo.svg" alt="logo"
+      /></a>
     </div>
   </section>
 </template>
 
 <script>
-import HeaderNavigation from '@/components/HeaderNavigation.vue'
+import HeaderNavigation from "@/components/HeaderNavigation.vue";
 
 export default {
   components: {
-    HeaderNavigation
+    HeaderNavigation,
   },
 };
 </script>
@@ -48,6 +56,8 @@ export default {
     min-height: 100%
     .header__picture__img
       height: 100%
+    .header__picture__img--min
+      display: none
   .header__content
     background: #202020
     position: relative
@@ -87,4 +97,55 @@ export default {
     height: 60px
     bottom: 40px
     right: 100px
+
+@media screen and (max-width: 1024px)
+  .header
+    flex-direction: column
+    .header__content
+      height: 620px
+    .header__picture
+      width: 100%
+      order: 1
+      img
+        min-width: 100%
+      .header__picture__img
+        height: 400px
+      .header__picture__img--hei
+        display: none
+      .header__picture__img--min
+        display: block
+
+@media screen and (max-width: 768px)
+  .header
+    .header__content
+      height: 550px
+    .title__wrapper
+      padding-left: 40px
+      padding-right: 20px
+      .header__title
+        font-size: calc( (100vw - 320px)/(1280 - 320) * (80 - 40) + 40px);
+      .years__life
+        position: static
+        transform: none
+        font-size: calc( (100vw - 320px)/(1280 - 320) * (80 - 20) + 20px)
+        margin-top: 40px
+        display: flex
+        justify-content: flex-start
+    .header__picture
+      .header__picture__img
+        height: 250px
+
+@media screen and (max-width: 550px)
+  .header
+    .header__title
+      margin-top: 10px
+    .logo__icon
+      display: none
+    .title__wrapper
+      padding-left: 20px
+      .header__description
+        margin-top: 20px
+    .header__picture
+      .header__picture__img
+        height: 125px
 </style>

@@ -4,51 +4,112 @@
       <div class="biographyTitle__wrap">
         <h2 class="biography__title">биография</h2>
         <div class="social__buttons__wrapper">
-          <SocialButtons/>
+          <SocialButtons />
         </div>
       </div>
       <div class="biography__wrap">
-        <div class="inner__wrap">
+
+        <div
+          class="inner__wrap"
+          v-for="fact in moreBiographyFacts"
+          v-bind:key="fact.year"
+        >
           <p>
-            Борис Кустодиев родился 7 марта 1878 года в Астрахани. Отца,
-            преподавателя духовной семинарии, не стало, когда мальчику было чуть
-            больше года. Мать осталась вдовой в 25 лет и содержала четверых
-            детей.<span class="year"></span>
+            {{ fact.text }}<span class="year">{{ fact.year }}</span>
           </p>
         </div>
-        <div class="inner__wrap">
-          <p>
-            Борис сначала учился в церковно-приходской школе, потом в гимназии.
-            Когда ему было девять лет, в город привезли выставку
-            художников-передвижников. Мальчика настолько впечатлила живопись,
-            что он твердо решил научиться рисовать так же искусно. Мать нашла
-            деньги, чтобы Борис смог брать уроки у известного в Астрахани
-            художника Павла Власова. <span class="year">1887</span>
-          </p>
+
+        <div class="readmore__wrap" v-on:click.prevent="moreFacts($event)">
+          <ReadMore />
         </div>
-        <div class="inner__wrap">
-          <p>
-            Окончив семинарию, в 1896 году Кустодиев отправился учиться в
-            Москву, но в художественную школу его не приняли: Борису уже
-            исполнилось 18 и он был слишком взрослым. Тогда Кустодиев поехал в
-            Петербург, где подал документы в Высшее художественное училище при
-            Академии художеств.<span class="year">1896</span>
-          </p>
-        </div>
-        <ReadMore/>
       </div>
     </div>
   </section>
 </template>
 
 <script>
-
 import SocialButtons from "@/components/SocialButtons.vue";
 import ReadMore from "@/components/ReadMore.vue";
 export default {
+  data: function() {
+    return {
+      biographyFacts: [
+        {
+          text: `Борис Кустодиев родился 7 марта 1878 года в Астрахани. Отца, преподавателя духовной семинарии, не стало, когда мальчику было чуть
+            больше года. Мать осталась вдовой в 25 лет и содержала четверых
+            детей.`,
+          year: null,
+        },
+        {
+          text: `Борис сначала учился в церковно-приходской школе, потом в гимназии.
+              Когда ему было девять лет, в город привезли выставку
+              художников-передвижников. Мальчика настолько впечатлила живопись,
+              что он твердо решил научиться рисовать так же искусно. Мать нашла
+              деньги, чтобы Борис смог брать уроки у известного в Астрахани
+              художника Павла Власова.`,
+          year: 1887,
+        },
+        {
+          text: `Окончив семинарию, в 1896 году Кустодиев отправился учиться в
+              Москву, но в художественную школу его не приняли: Борису уже
+              исполнилось 18 и он был слишком взрослым. Тогда Кустодиев поехал в
+              Петербург, где подал документы в Высшее художественное училище при
+              Академии художеств.`,
+          year: 1896,
+        },
+      ],
+      moreBiographyFacts: [
+        {
+          text: `Борис Кустодиев родился 7 марта 1878 года в Астрахани. Отца, преподавателя духовной семинарии, не стало, когда мальчику было чуть
+            больше года. Мать осталась вдовой в 25 лет и содержала четверых
+            детей.`,
+          year: null,
+        },
+        {
+          text: `Борис сначала учился в церковно-приходской школе, потом в гимназии.
+              Когда ему было девять лет, в город привезли выставку
+              художников-передвижников. Мальчика настолько впечатлила живопись,
+              что он твердо решил научиться рисовать так же искусно. Мать нашла
+              деньги, чтобы Борис смог брать уроки у известного в Астрахани
+              художника Павла Власова.`,
+          year: 1887,
+        },
+        {
+          text: `Окончив семинарию, в 1896 году Кустодиев отправился учиться в
+              Москву, но в художественную школу его не приняли: Борису уже
+              исполнилось 18 и он был слишком взрослым. Тогда Кустодиев поехал в
+              Петербург, где подал документы в Высшее художественное училище при
+              Академии художеств.`,
+          year: 1896,
+        },
+      ],
+    };
+  },
+
   components: {
     SocialButtons,
-    ReadMore
+    ReadMore,
+  },
+
+  methods: {
+    moreFacts: function(event) {
+      if(this.moreBiographyFacts.length < 4) {
+
+        fetch("./data/facts.json")
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          this.moreBiographyFacts = this.moreBiographyFacts.concat(data.facts)
+          event.target.innerHTML = 'скрыть'
+        });
+      }
+      if(this.moreBiographyFacts.length > 3) {
+        this.moreBiographyFacts = this.biographyFacts
+        event.target.innerHTML = 'читать больше'
+      }
+
+    },
   },
 };
 </script>
@@ -58,6 +119,7 @@ export default {
     padding: 100px 0
 .container
     display: flex
+    position: relative
 .biographyTitle__wrap
     display: flex
     justify-content: space-between
@@ -74,6 +136,7 @@ export default {
     font-size: 16px;
     line-height: 26px;
     color: #4C4C4C;
+    transition: all 1s
     .inner__wrap
         padding-left: 80px
         position: relative
@@ -88,5 +151,33 @@ export default {
         line-height: 40px;
         letter-spacing: 0.05em;
         color: #BFBFBF;
+    .readmore__wrap
+      .read__more
+        button
+          margin-left: auto
+          margin-right: 0
+@media screen and (max-width: 1024px)
+  .biography
+    padding: 60px 0 134px
+  .biography__title
+    text-align: center
+  .biography__wrap
+    .inner__wrap
+      padding: 40px 20px 0
+      .year
+        left: 20px
+        top: 0
+    .readmore__wrap
+      .read__more
+        button
+          margin-top: 20px
+          margin-left: 20px
+          margin-right: auto
+  .container
+    flex-direction: column
+    .social__buttons__wrapper
+      position: absolute
+      bottom: -74px
+      left: calc( 50% - 130px )
 
 </style>

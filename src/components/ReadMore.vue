@@ -12,7 +12,6 @@ export default {};
         cursor: pointer
         position: relative
         display: block
-        margin-left: auto
         border: none
         padding: 0 0
         outline: none
@@ -27,6 +26,7 @@ export default {};
             content: ''
             position: absolute
             bottom: 0
+            right: -10px
             height: 16px
             width: 120px
             background-image: url('~@/assets/img/Arrowright-big.svg')
