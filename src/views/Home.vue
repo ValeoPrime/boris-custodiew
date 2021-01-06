@@ -1,11 +1,10 @@
 <template>
-  <!-- <Header />
-  <Biography /> -->
+  <Header />
+  <Biography />
   <Slider />
-  <!-- <Creation />
+  <Creation />
   <Museums />
-  <Footer /> -->
-
+  <Footer />
 </template>
 
 <script>
@@ -24,7 +23,7 @@ export default {
     Slider,
     Creation,
     Museums,
-    Footer
+    Footer,
   },
 };
 </script>

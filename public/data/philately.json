@@ -1,7 +1,7 @@
 {
     "pictures": [
         {
-            "img": "../img1.jpg",
+            "img": "./img/pic1.png",
             "name": "Сундучник. Из серии \"Русские типы\"",
             "work": "painting",
             "plot": "portrait",
@@ -10,7 +10,7 @@
             "year": "1920"
         },
         {
-            "img": "../img2.jpg",
+            "img": "./img/pic2.png",
             "name": "Булочник. Из серии \"Русские типы\"",
             "work": "painting",
             "plot": "portrait",
@@ -19,7 +19,7 @@
             "year": "1920"
         },
         {
-            "img": "../img3.jpg",
+            "img": "./img/pic3.png",
             "name": "Купец с купчихой",
             "work": "painting",
             "plot": "portrait",
@@ -28,7 +28,7 @@
             "year": "1914"
         },
         {
-            "img": "../img4.jpg",
+            "img": "./img/pic4.png",
             "name": "Пасхальный обряд (Христосование)",
             "work": "painting",
             "plot": "portrait",
@@ -37,7 +37,7 @@
             "year": "1916"
         },
         {
-            "img": "../img5.jpg",
+            "img": "./img/pic5.png",
             "name": "Трактирщик. Из серии \"Русские типы\"",
             "work": "painting",
             "plot": "portrait",
@@ -46,7 +46,7 @@
             "year": "1920"
         },
         {
-            "img": "../img6.jpg",
+            "img": "./img/pic6.png",
             "name": "Портрет Степана Лукича Никольского",
             "work": "painting",
             "plot": "portrait",
@@ -55,7 +55,7 @@
             "year": "1901"
         },
         {
-            "img": "../img7.jpg",
+            "img": "./img/pic7.png",
             "name": "Монахиня",
             "work": "painting",
             "plot": "portrait",
@@ -64,7 +64,7 @@
             "year": "1901"
         },
         {
-            "img": "../img8.jpg",
+            "img": "./img/pic8.png",
             "name": "Портрет артистки Т.В. Чижовой",
             "work": "painting",
             "plot": "portrait",
@@ -73,7 +73,7 @@
             "year": "1924"
         },
         {
-            "img": "../img9.jpg",
+            "img": "./img/pic9.png",
             "name": "Портрет А.Н. Протасовой",
             "work": "painting",
             "plot": "portrait",
@@ -82,7 +82,7 @@
             "year": "1900"
         },
         {
-            "img": "../img10.jpg",
+            "img": "./img/pic10.png",
             "name": "На терассе",
             "work": "painting",
             "plot": "portrait",
@@ -91,7 +91,7 @@
             "year": "1906"
         },
         {
-            "img": "../img1.jpg",
+            "img": "./img/pic1.png",
             "name": "Сундучник. Из серии \"Русские типы\"",
             "work": "painting",
             "plot": "portrait",
@@ -100,7 +100,7 @@
             "year": "1920"
         },
         {
-            "img": "../img2.jpg",
+            "img": "./img/pic2.png",
             "name": "Булочник. Из серии \"Русские типы\"",
             "work": "painting",
             "plot": "portrait",
@@ -109,7 +109,7 @@
             "year": "1920"
         },
         {
-            "img": "../img3.jpg",
+            "img": "./img/pic3.png",
             "name": "Купец с купчихой",
             "work": "painting",
             "plot": "portrait",
@@ -118,7 +118,7 @@
             "year": "1914"
         },
         {
-            "img": "../img4.jpg",
+            "img": "./img/pic4.png",
             "name": "Пасхальный обряд (Христосование)",
             "work": "painting",
             "plot": "portrait",
@@ -127,7 +127,7 @@
             "year": "1916"
         },
         {
-            "img": "../img5.jpg",
+            "img": "./img/pic5.png",
             "name": "Трактирщик. Из серии \"Русские типы\"",
             "work": "painting",
             "plot": "portrait",
@@ -136,7 +136,7 @@
             "year": "1920"
         },
         {
-            "img": "../img6.jpg",
+            "img": "./img/pic6.png",
             "name": "Портрет Степана Лукича Никольского",
             "work": "painting",
             "plot": "portrait",
@@ -145,7 +145,7 @@
             "year": "1901"
         },
         {
-            "img": "../img7.jpg",
+            "img": "./img/pic7.png",
             "name": "Монахиня",
             "work": "painting",
             "plot": "portrait",
@@ -154,7 +154,7 @@
             "year": "1901"
         },
         {
-            "img": "../img8.jpg",
+            "img": "./img/pic8.png",
             "name": "Портрет артистки Т.В. Чижовой",
             "work": "painting",
             "plot": "portrait",
@@ -163,7 +163,7 @@
             "year": "1924"
         },
         {
-            "img": "../img9.jpg",
+            "img": "./img/pic9.png",
             "name": "Портрет А.Н. Протасовой",
             "work": "painting",
             "plot": "portrait",
@@ -172,7 +172,7 @@
             "year": "1900"
         },
         {
-            "img": "../img10.jpg",
+            "img": "./img/pic10.png",
             "name": "На терассе",
             "work": "painting",
             "plot": "portrait",
@@ -181,7 +181,7 @@
             "year": "1906"
         },
         {
-            "img": "../img1.jpg",
+            "img": "./img/pic1.png",
             "name": "Сундучник. Из серии \"Русские типы\"",
             "work": "painting",
             "plot": "portrait",
@@ -190,7 +190,7 @@
             "year": "1920"
         },
         {
-            "img": "../img2.jpg",
+            "img": "./img/pic2.png",
             "name": "Булочник. Из серии \"Русские типы\"",
             "work": "painting",
             "plot": "portrait",
@@ -199,7 +199,7 @@
             "year": "1920"
         },
         {
-            "img": "../img3.jpg",
+            "img": "./img/pic3.png",
             "name": "Купец с купчихой",
             "work": "painting",
             "plot": "portrait",
@@ -208,7 +208,7 @@
             "year": "1914"
         },
         {
-            "img": "../img4.jpg",
+            "img": "./img/pic4.png",
             "name": "Пасхальный обряд (Христосование)",
             "work": "painting",
             "plot": "portrait",
@@ -217,7 +217,7 @@
             "year": "1916"
         },
         {
-            "img": "../img5.jpg",
+            "img": "./img/pic5.png",
             "name": "Трактирщик. Из серии \"Русские типы\"",
             "work": "painting",
             "plot": "portrait",
@@ -226,7 +226,7 @@
             "year": "1920"
         },
         {
-            "img": "../img6.jpg",
+            "img": "./img/pic6.png",
             "name": "Портрет Степана Лукича Никольского",
             "work": "painting",
             "plot": "portrait",
@@ -235,7 +235,7 @@
             "year": "1901"
         },
         {
-            "img": "../img7.jpg",
+            "img": "./img/pic7.png",
             "name": "Монахиня",
             "work": "painting",
             "plot": "portrait",
@@ -244,7 +244,7 @@
             "year": "1901"
         },
         {
-            "img": "../img8.jpg",
+            "img": "./img/pic8.png",
             "name": "Портрет артистки Т.В. Чижовой",
             "work": "painting",
             "plot": "portrait",
@@ -253,7 +253,7 @@
             "year": "1924"
         },
         {
-            "img": "../img9.jpg",
+            "img": "./img/pic9.png",
             "name": "Портрет А.Н. Протасовой",
             "work": "painting",
             "plot": "portrait",
@@ -262,7 +262,7 @@
             "year": "1900"
         },
         {
-            "img": "../img10.jpg",
+            "img": "./img/pic10.png",
             "name": "На терассе",
             "work": "painting",
             "plot": "portrait",
@@ -271,7 +271,7 @@
             "year": "1906"
         },
         {
-            "img": "../img1.jpg",
+            "img": "./img/pic1.png",
             "name": "Сундучник. Из серии \"Русские типы\"",
             "work": "painting",
             "plot": "portrait",
@@ -280,7 +280,7 @@
             "year": "1920"
         },
         {
-            "img": "../img2.jpg",
+            "img": "./img/pic2.png",
             "name": "Булочник. Из серии \"Русские типы\"",
             "work": "painting",
             "plot": "portrait",
@@ -289,7 +289,7 @@
             "year": "1920"
         },
         {
-            "img": "../img3.jpg",
+            "img": "./img/pic3.png",
             "name": "Купец с купчихой",
             "work": "painting",
             "plot": "portrait",
@@ -298,7 +298,7 @@
             "year": "1914"
         },
         {
-            "img": "../img4.jpg",
+            "img": "./img/pic4.png",
             "name": "Пасхальный обряд (Христосование)",
             "work": "painting",
             "plot": "portrait",
@@ -307,7 +307,7 @@
             "year": "1916"
         },
         {
-            "img": "../img5.jpg",
+            "img": "./img/pic5.png",
             "name": "Трактирщик. Из серии \"Русские типы\"",
             "work": "painting",
             "plot": "portrait",
@@ -316,7 +316,7 @@
             "year": "1920"
         },
         {
-            "img": "../img6.jpg",
+            "img": "./img/pic6.png",
             "name": "Портрет Степана Лукича Никольского",
             "work": "painting",
             "plot": "portrait",
@@ -325,7 +325,7 @@
             "year": "1901"
         },
         {
-            "img": "../img7.jpg",
+            "img": "./img/pic7.png",
             "name": "Монахиня",
             "work": "painting",
             "plot": "portrait",
@@ -334,7 +334,7 @@
             "year": "1901"
         },
         {
-            "img": "../img8.jpg",
+            "img": "./img/pic8.png",
             "name": "Портрет артистки Т.В. Чижовой",
             "work": "painting",
             "plot": "portrait",
@@ -343,7 +343,7 @@
             "year": "1924"
         },
         {
-            "img": "../img9.jpg",
+            "img": "./img/pic9.png",
             "name": "Портрет А.Н. Протасовой",
             "work": "painting",
             "plot": "portrait",
@@ -352,7 +352,7 @@
             "year": "1900"
         },
         {
-            "img": "../img10.jpg",
+            "img": "./img/pic10.png",
             "name": "На терассе",
             "work": "painting",
             "plot": "portrait",
@@ -361,7 +361,7 @@
             "year": "1906"
         },
         {
-            "img": "../img1.jpg",
+            "img": "./img/pic1.png",
             "name": "Сундучник. Из серии \"Русские типы\"",
             "work": "painting",
             "plot": "portrait",
@@ -370,7 +370,7 @@
             "year": "1920"
         },
         {
-            "img": "../img2.jpg",
+            "img": "./img/pic2.png",
             "name": "Булочник. Из серии \"Русские типы\"",
             "work": "painting",
             "plot": "portrait",
@@ -379,7 +379,7 @@
             "year": "1920"
         },
         {
-            "img": "../img3.jpg",
+            "img": "./img/pic3.png",
             "name": "Купец с купчихой",
             "work": "painting",
             "plot": "portrait",
@@ -388,7 +388,7 @@
             "year": "1914"
         },
         {
-            "img": "../img4.jpg",
+            "img": "./img/pic4.png",
             "name": "Пасхальный обряд (Христосование)",
             "work": "painting",
             "plot": "portrait",
@@ -397,7 +397,7 @@
             "year": "1916"
         },
         {
-            "img": "../img5.jpg",
+            "img": "./img/pic5.png",
             "name": "Трактирщик. Из серии \"Русские типы\"",
             "work": "painting",
             "plot": "portrait",
@@ -406,7 +406,7 @@
             "year": "1920"
         },
         {
-            "img": "../img6.jpg",
+            "img": "./img/pic6.png",
             "name": "Портрет Степана Лукича Никольского",
             "work": "painting",
             "plot": "portrait",
@@ -415,7 +415,7 @@
             "year": "1901"
         },
         {
-            "img": "../img7.jpg",
+            "img": "./img/pic7.png",
             "name": "Монахиня",
             "work": "painting",
             "plot": "portrait",
@@ -424,7 +424,7 @@
             "year": "1901"
         },
         {
-            "img": "../img8.jpg",
+            "img": "./img/pic8.png",
             "name": "Портрет артистки Т.В. Чижовой",
             "work": "painting",
             "plot": "portrait",
@@ -433,7 +433,7 @@
             "year": "1924"
         },
         {
-            "img": "../img9.jpg",
+            "img": "./img/pic9.png",
             "name": "Портрет А.Н. Протасовой",
             "work": "painting",
             "plot": "portrait",
@@ -442,7 +442,7 @@
             "year": "1900"
         },
         {
-            "img": "../img10.jpg",
+            "img": "./img/pic10.png",
             "name": "На терассе",
             "work": "painting",
             "plot": "portrait",
@@ -451,7 +451,7 @@
             "year": "1906"
         },
         {
-            "img": "../img1.jpg",
+            "img": "./img/pic1.png",
             "name": "Сундучник. Из серии \"Русские типы\"",
             "work": "painting",
             "plot": "portrait",
@@ -460,7 +460,7 @@
             "year": "1920"
         },
         {
-            "img": "../img2.jpg",
+            "img": "./img/pic2.png",
             "name": "Булочник. Из серии \"Русские типы\"",
             "work": "painting",
             "plot": "portrait",
@@ -469,7 +469,7 @@
             "year": "1920"
         },
         {
-            "img": "../img3.jpg",
+            "img": "./img/pic3.png",
             "name": "Купец с купчихой",
             "work": "painting",
             "plot": "portrait",
@@ -478,7 +478,7 @@
             "year": "1914"
         },
         {
-            "img": "../img4.jpg",
+            "img": "./img/pic4.png",
             "name": "Пасхальный обряд (Христосование)",
             "work": "painting",
             "plot": "portrait",
@@ -487,7 +487,7 @@
             "year": "1916"
         },
         {
-            "img": "../img5.jpg",
+            "img": "./img/pic5.png",
             "name": "Трактирщик. Из серии \"Русские типы\"",
             "work": "painting",
             "plot": "portrait",
@@ -496,7 +496,7 @@
             "year": "1920"
         },
         {
-            "img": "../img6.jpg",
+            "img": "./img/pic6.png",
             "name": "Портрет Степана Лукича Никольского",
             "work": "painting",
             "plot": "portrait",
@@ -505,7 +505,7 @@
             "year": "1901"
         },
         {
-            "img": "../img7.jpg",
+            "img": "./img/pic7.png",
             "name": "Монахиня",
             "work": "painting",
             "plot": "portrait",
@@ -514,7 +514,7 @@
             "year": "1901"
         },
         {
-            "img": "../img8.jpg",
+            "img": "./img/pic8.png",
             "name": "Портрет артистки Т.В. Чижовой",
             "work": "painting",
             "plot": "portrait",
@@ -523,7 +523,7 @@
             "year": "1924"
         },
         {
-            "img": "../img9.jpg",
+            "img": "./img/pic9.png",
             "name": "Портрет А.Н. Протасовой",
             "work": "painting",
             "plot": "portrait",
@@ -532,7 +532,7 @@
             "year": "1900"
         },
         {
-            "img": "../img10.jpg",
+            "img": "./img/pic10.png",
             "name": "На терассе",
             "work": "painting",
             "plot": "portrait",
@@ -541,7 +541,7 @@
             "year": "1906"
         },
         {
-            "img": "../img1.jpg",
+            "img": "./img/pic1.png",
             "name": "Сундучник. Из серии \"Русские типы\"",
             "work": "painting",
             "plot": "portrait",
@@ -550,7 +550,7 @@
             "year": "1920"
         },
         {
-            "img": "../img2.jpg",
+            "img": "./img/pic2.png",
             "name": "Булочник. Из серии \"Русские типы\"",
             "work": "painting",
             "plot": "portrait",
@@ -559,7 +559,7 @@
             "year": "1920"
         },
         {
-            "img": "../img3.jpg",
+            "img": "./img/pic3.png",
             "name": "Купец с купчихой",
             "work": "painting",
             "plot": "portrait",
@@ -568,7 +568,7 @@
             "year": "1914"
         },
         {
-            "img": "../img4.jpg",
+            "img": "./img/pic4.png",
             "name": "Пасхальный обряд (Христосование)",
             "work": "painting",
             "plot": "portrait",
@@ -577,7 +577,7 @@
             "year": "1916"
         },
         {
-            "img": "../img5.jpg",
+            "img": "./img/pic5.png",
             "name": "Трактирщик. Из серии \"Русские типы\"",
             "work": "painting",
             "plot": "portrait",
@@ -586,7 +586,7 @@
             "year": "1920"
         },
         {
-            "img": "../img6.jpg",
+            "img": "./img/pic6.png",
             "name": "Портрет Степана Лукича Никольского",
             "work": "painting",
             "plot": "portrait",
@@ -595,7 +595,7 @@
             "year": "1901"
         },
         {
-            "img": "../img7.jpg",
+            "img": "./img/pic7.png",
             "name": "Монахиня",
             "work": "painting",
             "plot": "portrait",
@@ -604,7 +604,7 @@
             "year": "1901"
         },
         {
-            "img": "../img8.jpg",
+            "img": "./img/pic8.png",
             "name": "Портрет артистки Т.В. Чижовой",
             "work": "painting",
             "plot": "portrait",
@@ -613,7 +613,7 @@
             "year": "1924"
         },
         {
-            "img": "../img9.jpg",
+            "img": "./img/pic9.png",
             "name": "Портрет А.Н. Протасовой",
             "work": "painting",
             "plot": "portrait",
@@ -622,7 +622,7 @@
             "year": "1900"
         },
         {
-            "img": "../img10.jpg",
+            "img": "./img/pic10.png",
             "name": "На терассе",
             "work": "painting",
             "plot": "portrait",

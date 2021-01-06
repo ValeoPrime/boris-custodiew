@@ -25,7 +25,6 @@ export default {
     },
   },
   created: function() {
-    console.log(this.theme);
     this.yandex_shared("ya-share2");
   },
   updated: function() {
@@ -37,19 +36,19 @@ export default {
 <style lang="sass">
 #ya-share2
   .ya-share2__icon
-    height: 34px
-    width: 94px
-    border: 1px solid #BFBFBF;
+    height: 25px
+    width: 54px
+    border: none
     box-sizing: border-box;
     background-color: transparent
     background-repeat: no-repeat
     background-position: center
   .ya-share2__item_service_vkontakte .ya-share2__icon
-    background-image: url('~@/assets/img/VK.svg')
+    background-image: url('~@/assets/img/VK-light.svg')
   .ya-share2__item_service_facebook .ya-share2__icon
-    background-image: url('~@/assets/img/Twit.svg')
+    background-image: url('~@/assets/img/Tvit-light.svg')
   .ya-share2__item_service_twitter .ya-share2__icon
-    background-image: url('~@/assets/img/Fb.svg')
+    background-image: url('~@/assets/img/FB-light.svg')
 
   .ya-share2__badge
       background-color: transparent
@@ -61,7 +60,7 @@ export default {
   #ya-share2
     .ya-share2__icon
         height: 34px
-        width: 84px
+        width: 50px
 
 
 

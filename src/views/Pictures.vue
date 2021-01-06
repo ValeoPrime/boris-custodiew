@@ -1,5 +1,19 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <PicturesHeader />
+  <Catalog />
+  <!-- <Footer /> -->
 </template>
+
+<script>
+import PicturesHeader from "@/components/PicturesHeader.vue";
+import Catalog from "@/components/Catalog.vue";
+import Footer from "@/components/Footer.vue";
+
+export default {
+  components: {
+    PicturesHeader,
+    Catalog,
+    Footer,
+  },
+};
+</script>

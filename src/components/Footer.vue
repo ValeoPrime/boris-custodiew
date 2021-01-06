@@ -9,17 +9,17 @@
       </ul>
     </div>
     <div class="social__buttons__wrapper">
-      <SocialButtons />
+      <SocialButtonLight />
     </div>
   </footer>
 </template>
 
 <script>
-import SocialButtons from "@/components/SocialButtons.vue";
+import SocialButtonLight from "@/components/SocialButtonLight.vue";
 
 export default {
   components: {
-    SocialButtons,
+    SocialButtonLight,
   },
 };
 </script>
@@ -34,6 +34,7 @@ export default {
     background: #202020;
     .footer__nav
         display: flex
+        align-items: center;
         margin: 0 auto
         .nav__list__item + .nav__list__item
             margin-left: 20px
@@ -42,4 +43,15 @@ export default {
         display: flex
         justify-content: center
         margin-top: 45px
+
+@media screen and (max-width: 370px)
+  .footer
+    .footer__nav
+      flex-direction: column
+      justify-content: center;
+      .nav__list__item + .nav__list__item
+        margin: 0
+        margin-top: 20px
+
+
 </style>
