@@ -69,14 +69,10 @@
                 {{ tag.plotStyle }} <span>&times;</span>
               </div>
             </div>
-            <div class="views__variants">
-              <button class="view__table">
-                <!-- <img src="@/assets/img/" alt=""> -->
-              </button>
-              <button class="view__grid">
-                <img src="@/assets/img/view__grid.png" alt="grid" />
-              </button>
-            </div>
+            <ViewsVariants
+              v-on:viewChange="viewsHandler"
+              v-bind:showVariant="showVariant"
+            />
           </div>
           <div class="pictures__wrapper">
             <div
@@ -105,6 +101,7 @@
 </template>
 
 <script>
+import ViewsVariants from "@/components/ViewsVariants.vue";
 import TextAccordion from "@/components/TextAccordion.vue";
 import InputsAccordeon from "@/components/InputsAccordeon.vue";
 import Pagination from "@/components/Pagination.vue";
@@ -120,6 +117,7 @@ async function fetchData(path) {
 }
 export default {
   components: {
+    ViewsVariants,
     TextAccordion,
     InputsAccordeon,
     Pagination,
@@ -139,6 +137,7 @@ export default {
       filterTags: [],
       showPictures: [],
       curentPaginationItem: 0,
+      showVariant: "table",
 
       works: {
         title: "Работы",
@@ -443,14 +442,12 @@ export default {
   },
   methods: {
     tabsHandler: async function(e) {
-      console.log(e.target.id);
       const allTabs = document.querySelectorAll(".catalog__tab__item");
       allTabs.forEach((tab) => {
         tab.classList.remove("active__tab");
       });
       e.target.classList.add("active__tab");
       this.pictures = await fetchData(e.target.id);
-      console.log(this.pictures);
     },
 
     checkboxHandler: function(item) {
@@ -460,12 +457,44 @@ export default {
         this.filterTags = this.filterTags.filter((tag) => tag.id !== item.id);
       }
     },
+
+    viewsHandler: function(id) {
+      console.log("viewHandler", id);
+      if (this.showVariant == id) {
+        return;
+      } else {
+        this.changeViews(id);
+      }
+    },
+    changeViews: function(id) {
+      const catalogFilters = document.querySelector(".catalog__filters");
+      const pictures = document.querySelectorAll(".picture__item");
+
+      if (id == "grid") {
+        catalogFilters.style.paddingRight = 40 + "px";
+        catalogFilters.style.minWidth = 225 + "px";
+        catalogFilters.style.maxWidth = 200 + "px";
+        pictures.forEach((picture) => {
+          picture.style.width = 200 + "px";
+        });
+      } else {
+        catalogFilters.style.paddingRight = 118 + "px";
+        catalogFilters.style.minWidth = 318 + "px";
+        catalogFilters.style.maxWidth = 318 + "px";
+        pictures.forEach((picture) => {
+          picture.style.width = 280 + "px";
+        });
+      }
+
+      //29.5 680
+      //46.5 600
+      this.showVariant = id;
+    },
     removeTag: function(item) {
       this.filterTags = this.filterTags.filter((tag) => tag.id !== item.id);
       //фильтрация
     },
     paginationHandler: function(id) {
-      console.log("Фильтруем по", id);
       this.showPictures = this.filteredPictures.slice(
         id * this.offset - this.offset,
         id * this.offset
@@ -515,6 +544,7 @@ export default {
         min-width: 318px
         max-width: 318px
         padding-right: 118px
+        transition: all 1s
 
     .catalog__galery
         width: 100%
@@ -551,27 +581,13 @@ export default {
                 bottom: calc( 50% - -7px )
         .filter__tag + .filter__tag
             margin-left: 10px
-        .views__variants
-            position: absolute
-            top: 0
-            right: 0
-            display: flex
-            align-items: center
-            button
-                width: 15px
-                height: 15px
-                img
-                    width: 100%
-                    height: 100%
-            .view__table
-                margin-right: 20px
-
 
     .pictures__wrapper
         display: flex
         justify-content: space-between
         flex-wrap: wrap
-        padding-top: 20px
+        margin-top: 20px
+        padding-top: 50px
         position: relative
 
     .picture__item
@@ -582,6 +598,8 @@ export default {
         text-align: center;
         color: #4B4B4B;
         margin-bottom: 20px
+        img
+            max-width: 100%
         .picture__title
             margin-top: 10px
             font-weight: normal

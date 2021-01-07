@@ -611,24 +611,6 @@
       "style": "realism",
       "technics": "oil",
       "year": "1924"
-    },
-    {
-      "img": "./img/pic9.png",
-      "name": "Портрет А.Н. Протасовой",
-      "work": "painting",
-      "plot": "portrait",
-      "style": "realism",
-      "technics": "oil",
-      "year": "1900"
-    },
-    {
-      "img": "./img/pic10.png",
-      "name": "На терассе",
-      "work": "painting",
-      "plot": "portrait",
-      "style": "realism",
-      "technics": "oil",
-      "year": "1906"
     }
   ]
 }

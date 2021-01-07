@@ -1,20 +1,20 @@
 <template>
   <div class="accordion__wrapper">
     <button v-on:click="accordionHandler($event)" class="accordion active">
-      {{works.title}}
+      {{ works.title }}
     </button>
     <div class="panel">
-      <div v-for="work in works.worksArr" :key='work.id' class="filter__item">
-          <div class="filter__title">{{work.workStyle}}</div>
-          <div class="picture__count">{{work.worksCount}}</div>
-    </div>
+      <div v-for="work in works.worksArr" :key="work.id" class="filter__item">
+        <div class="filter__title">{{ work.workStyle }}</div>
+        <div class="picture__count">{{ work.worksCount }}</div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-props:['works'],
+  props: ["works"],
   methods: {
     accordionHandler: function(e) {
       e.target.classList.toggle("active");
@@ -83,9 +83,9 @@ props:['works'],
     font-family: Helvetica,sans-serif
     font-size: 12px;
     line-height: 26px;
+    margin-top: 10px
     .filter__title
         color: #4B4B4B;
-        margin-top: 10px
     .picture__count
         color: #BFBFBF;
 </style>
