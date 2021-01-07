@@ -44,10 +44,7 @@
         </label>
       </div>
       <div v-if="data.fold" class="accordion__wrapper--inner">
-        <button
-          v-on:click="accordionHandlerInner($event)"
-          class="accordion--inner"
-        >
+        <button v-on:click="accordionHandler($event)" class="accordion--inner">
           Все элементы
         </button>
         <div class="panel panel--inner">
@@ -96,23 +93,15 @@ export default {
       e.target.classList.toggle("active");
       const panel = e.target.nextElementSibling;
       if (panel.style.maxHeight) {
-        console.log("закрываем", panel.style.maxHeight);
         panel.style.maxHeight = null;
-      } else {
-        console.log("раскрываем", panel.scrollHeight);
-        panel.style.maxHeight = panel.scrollHeight + "px";
-      }
-    },
-    accordionHandlerInner: function(e) {
-      e.target.classList.toggle("active");
-
-      const panel = e.target.nextElementSibling;
-      if (panel.style.maxHeight) {
-        console.log("закрываем", panel.style.maxHeight);
-        panel.style.maxHeight = null;
+        e.target.classList.contains("accordion--inner")
+          ? (e.target.innerHTML = "Все элементы")
+          : null;
       } else {
         panel.style.maxHeight = panel.scrollHeight + "px";
-        console.log("раскрываем", panel.scrollHeight);
+        e.target.classList.contains("accordion--inner")
+          ? (e.target.innerHTML = "Скрыть")
+          : null;
       }
     },
   },
@@ -136,8 +125,10 @@ export default {
     padding-bottom: 20px
     margin-bottom: 20px
 .accordion__wrapper--inner
-    margin-top: 10px
+    margin-top: 0px
     border-bottom: 0
+    padding-bottom: 20px
+    position: relative
 
 .accordion, .accordion--inner
     cursor: pointer;
@@ -158,6 +149,9 @@ export default {
     padding-left: 20px
     position: relative
     text-transform: none
+    position: absolute
+    bottom: -10px
+    left: 2px
 
 .accordion:after, .accordion--inner:after
     content: '\002B';

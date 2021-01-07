@@ -77,8 +77,8 @@
           <div class="pictures__wrapper">
             <div
               class="picture__item"
-              v-for="picture in showPictures"
-              :key="picture.year"
+              v-for="(picture, index) in showPictures"
+              :key="picture.year + index"
             >
               <div class="picture__img">
                 <img :src="picture.img" alt="picture" />
@@ -86,6 +86,7 @@
               <h3 class="picture__title">{{ picture.name }}</h3>
               <div class="picture__year">{{ picture.year }}</div>
             </div>
+            <div v-if="showPictures.length == 0" class="empty__message">По таким критериям картин не нашлось ¯\_(ツ)_/¯</div>
           </div>
           <Pagination
             v-if="filteredPictures"
@@ -127,6 +128,9 @@ export default {
     if (this.filterTags.length == 0) {
       this.filteredPictures = this.pictures;
       this.paginationHandler(1);
+    } else {
+      this.filteredPictures = this.filterPictures(this.filterTags)
+      this.paginationHandler(1);
     }
   },
   data() {
@@ -141,47 +145,52 @@ export default {
 
       works: {
         title: "Работы",
-        searchInput: false,
-        fold: false,
-        rangeInput: false,
         worksArr: [
           {
             id: "painting ",
+            work:"painting",
             workStyle: "Живопись",
             worksCount: 383,
           },
           {
             id: "drawings-illustrations",
+            work:"drawings-illustrations",
             workStyle: "Рисунки и иллюстрации",
             worksCount: 110,
           },
           {
             id: "theatrical-decorative",
+            work:"theatrical-decorative",
             workStyle: "Театрально-декорационное",
             worksCount: 22,
           },
           {
             id: "graphic",
+            work:"graphic",
             workStyle: "Графика",
             worksCount: 22,
           },
           {
             id: "engraving",
+            work:"engraving",
             workStyle: "Гравюра",
             worksCount: 10,
           },
           {
             id: "poster",
+            work:"poster",
             workStyle: "Плакат",
             worksCount: 9,
           },
           {
             id: "sculpture",
+            work:"sculpture",
             workStyle: "Скульптура",
             worksCount: 5,
           },
           {
             id: "decorative",
+            work:"decorative",
             workStyle: "Декоративно-прикладное",
             worksCount: 2,
           },
@@ -423,16 +432,19 @@ export default {
         dataArr: [
           {
             id: "period 1",
+            year: "period 1",
             plotStyle: "до 1900",
             checked: true,
           },
           {
             id: "period 2",
+            year: "period 2",
             plotStyle: "1901-1916 ",
             checked: false,
           },
           {
             id: "period 3",
+            year: "period 3",
             plotStyle: "1917 и позже",
             checked: false,
           },
@@ -448,14 +460,6 @@ export default {
       });
       e.target.classList.add("active__tab");
       this.pictures = await fetchData(e.target.id);
-    },
-
-    checkboxHandler: function(item) {
-      if (item.checked) {
-        this.filterTags.push(item);
-      } else {
-        this.filterTags = this.filterTags.filter((tag) => tag.id !== item.id);
-      }
     },
 
     viewsHandler: function(id) {
@@ -488,9 +492,50 @@ export default {
       this.showVariant = id;
     },
 
+    checkboxHandler: function(item) {
+      if (item.checked) {
+        this.filterTags.push(item);
+        this.filteredPictures = this.filterPictures(this.filterTags)
+        this.paginationHandler(1)
+      } else {
+        this.filterTags = this.filterTags.filter((tag) => tag.id !== item.id);
+        this.filteredPictures = this.filterPictures(this.filterTags)
+        this.paginationHandler(1)
+      }
+    },
+
     removeTag: function(item) {
       this.filterTags = this.filterTags.filter((tag) => tag.id !== item.id);
-      //фильтрация
+      this.filteredPictures = this.filterPictures(this.filterTags)
+      this.paginationHandler(1)
+    },
+
+    filterPictures: function(filterTags) {
+      let result = this.pictures;
+      filterTags.forEach((filter) => {
+        if (filter.plot) {
+          result = result.filter((pic) => pic.plot == filter.plot);
+        }
+        if (filter.style) {
+          result = result.filter((pic) => pic.style == filter.style);
+        }
+        if (filter.technics) {
+          result = result.filter((pic) => pic.technics == filter.technics);
+        }
+        if (filter.year) {
+          switch (filter.year) {
+            case "period 1":
+              result = result.filter((pic) => pic.year <= 1900);
+            case "period 2":
+              result = result.filter(
+                (pic) => pic.year > 1901 && pic.year < 1916
+              );
+            case "period 3":
+              result = result.filter((pic) => pic.year >= 1917);
+          }
+        }
+      });
+      return result
     },
     paginationHandler: function(id) {
       this.showPictures = this.filteredPictures.slice(
@@ -604,4 +649,11 @@ export default {
             font-size: inherit
             margin-block-start: 0
             margin-block-end: 0
+    .empty__message
+      font-family: Yeseva One,sans-serif
+      font-style: normal;
+      font-weight: normal;
+      font-size: 20px;
+      line-height: 23px;
+      text-align: center
 </style>

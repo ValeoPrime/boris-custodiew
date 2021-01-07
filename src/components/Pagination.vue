@@ -3,10 +3,10 @@
     <ul class="pagination__list">
       <li
         class="pagination__item"
-        v-for="num in paginationCount"
+        v-for="(num, index) in paginationCount"
         v-bind:class="[curentPaginationItem == num ? 'active' : '']"
         v-on:click="$emit('paginationChange', $event.target.id)"
-        :key="num"
+        :key="num + index"
         :id="num"
       >
         {{ num }}
