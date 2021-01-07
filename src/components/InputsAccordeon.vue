@@ -12,10 +12,26 @@
         placeholder="Быстрый поиск"
       />
       <div v-if="data.rangeInput" class="range__wrapper">
-        <input type="text" v-on:input="$emit('rangeSearch', $event.target.value, $event.target.id)" class="range__input" id="start" placeholder="c" />
-        <input type="text" v-on:input="$emit('rangeSearch', $event.target.value, $event.target.id)" class="range__input" id="end" placeholder="по" />
+        <input
+          type="text"
+          v-on:input="
+            $emit('rangeSearch', $event.target.value, $event.target.id)
+          "
+          class="range__input"
+          id="start"
+          placeholder="c"
+        />
+        <input
+          type="text"
+          v-on:input="
+            $emit('rangeSearch', $event.target.value, $event.target.id)
+          "
+          class="range__input"
+          id="end"
+          placeholder="по"
+        />
       </div>
-      <div v-for="item in data.dataArr" :key="item.id" class="filter__item">
+      <div v-for="item in viewInputs" :key="item.id" class="filter__item">
         <label class="custom-checkbox">
           <input
             type="checkbox"
@@ -27,6 +43,28 @@
           <span>{{ item.plotStyle }}</span>
         </label>
       </div>
+      <div v-if="data.fold" class="accordion__wrapper--inner">
+        <button
+          v-on:click="accordionHandlerInner($event)"
+          class="accordion--inner"
+        >
+          Все элементы
+        </button>
+        <div class="panel panel--inner">
+          <div v-for="item in foldInputs" :key="item.id" class="filter__item">
+            <label class="custom-checkbox">
+              <input
+                type="checkbox"
+                id="item.id"
+                v-on:change="$emit('inputChange', item)"
+                v-model="item.checked"
+                name="alias"
+              />
+              <span>{{ item.plotStyle }}</span>
+            </label>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -34,14 +72,47 @@
 <script>
 export default {
   props: ["data"],
+  data() {
+    return {};
+  },
+  computed: {
+    viewInputs: function() {
+      if (this.data.fold) {
+        return this.data.dataArr.slice(0, 7);
+      } else {
+        return this.data.dataArr;
+      }
+    },
+    foldInputs: function() {
+      if (this.data.fold) {
+        return this.data.dataArr.slice(7, this.data.dataArr.length);
+      } else {
+        return false;
+      }
+    },
+  },
   methods: {
     accordionHandler: function(e) {
       e.target.classList.toggle("active");
       const panel = e.target.nextElementSibling;
       if (panel.style.maxHeight) {
+        console.log("закрываем", panel.style.maxHeight);
+        panel.style.maxHeight = null;
+      } else {
+        console.log("раскрываем", panel.scrollHeight);
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
+    },
+    accordionHandlerInner: function(e) {
+      e.target.classList.toggle("active");
+
+      const panel = e.target.nextElementSibling;
+      if (panel.style.maxHeight) {
+        console.log("закрываем", panel.style.maxHeight);
         panel.style.maxHeight = null;
       } else {
         panel.style.maxHeight = panel.scrollHeight + "px";
+        console.log("раскрываем", panel.scrollHeight);
       }
     },
   },
@@ -49,7 +120,11 @@ export default {
     const panels = document.querySelectorAll(".panel");
 
     panels.forEach((panel) => {
-      panel.style.maxHeight = panel.scrollHeight + "px";
+      if (panel.classList.contains("panel--inner")) {
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + 150 + "px";
+      }
     });
   },
 };
@@ -60,7 +135,11 @@ export default {
     border-bottom: 1px solid #E5E5E5;
     padding-bottom: 20px
     margin-bottom: 20px
-.accordion
+.accordion__wrapper--inner
+    margin-top: 10px
+    border-bottom: 0
+
+.accordion, .accordion--inner
     cursor: pointer;
     width: 100%;
     border: none;
@@ -75,9 +154,12 @@ export default {
     color: #202020;
     transition: 0.4s;
     text-transform: uppercase
+.accordion--inner
+    padding-left: 20px
+    position: relative
+    text-transform: none
 
-
-.accordion:after
+.accordion:after, .accordion--inner:after
     content: '\002B';
     width: 10px
     height: 10px
@@ -85,10 +167,15 @@ export default {
     font-weight: bold;
     float: right;
     font-size: 20px
+.accordion--inner:after
+    position: absolute
+    left: 0
+    top: calc(50% - 15px)
 
 .active:after
     content: "\2212";
     font-size: 20px
+
 
 .panel
     background-color: rgba(255,255 ,255 ,1 )
@@ -130,6 +217,7 @@ export default {
     /* стили для чекбокса, находящегося в состоянии checked */
     .custom-checkbox>input:checked+span::before
       background-image: url("~@/assets/img/checked.svg");
+
 
 .filter__item
     display: flex

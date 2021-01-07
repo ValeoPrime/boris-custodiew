@@ -485,11 +485,9 @@ export default {
           picture.style.width = 280 + "px";
         });
       }
-
-      //29.5 680
-      //46.5 600
       this.showVariant = id;
     },
+
     removeTag: function(item) {
       this.filterTags = this.filterTags.filter((tag) => tag.id !== item.id);
       //фильтрация
