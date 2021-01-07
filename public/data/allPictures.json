@@ -1,102 +1,103 @@
 {
-    "pictures": [
-        {
-            "img": "./img/img1.jpg",
-            "name": "Сундучник. Из серии \"Русские типы\"",
-            "work": "painting",
-            "plot": "portrait",
-            "style": "realism",
-            "technics": "oil",
-            "year": "1920"
-        },
-        {
-            "img": "./img/img2.jpg",
-            "name": "Булочник. Из серии \"Русские типы\"",
-            "work": "painting",
-            "plot": "portrait",
-            "style": "realism",
-            "technics": "oil",
-            "year": "1920"
-        },
-        {
-            "img": "./img/img3.jpg",
-            "name": "Купец с купчихой",
-            "work": "painting",
-            "plot": "portrait",
-            "style": "realism",
-            "technics": "oil",
-            "year": "1914"
-        },
-        {
-            "img": "./img/img1.jpg",
-            "name": "Пасхальный обряд (Христосование)",
-            "work": "painting",
-            "plot": "portrait",
-            "style": "realism",
-            "technics": "oil",
-            "year": "1916"
-        },
-        {
-            "img": "./img/img2.jpg",
-            "name": "Трактирщик. Из серии \"Русские типы\"",
-            "work": "painting",
-            "plot": "portrait",
-            "style": "realism",
-            "technics": "oil",
-            "year": "1920"
-        },
-        {
-            "img": "./img/img3.jpg",
-            "name": "Портрет Степана Лукича Никольского",
-            "work": "painting",
-            "plot": "portrait",
-            "style": "realism",
-            "technics": "oil",
-            "year": "1901"
-        },{
-            "img": "./img/img7.jpg",
-            "name": "Монахиня",
-            "work": "painting",
-            "plot": "portrait",
-            "style": "realism",
-            "technics": "oil",
-            "year": "1901"
-        },
-        {
-            "img": "./img/img8.jpg",
-            "name": "Портрет артистки Т.В. Чижовой",
-            "work": "painting",
-            "plot": "portrait",
-            "style": "realism",
-            "technics": "oil",
-            "year": "1924"
-        },
-        {
-            "img": "./img/img9.jpg",
-            "name": "Портрет А.Н. Протасовой",
-            "work": "painting",
-            "plot": "portrait",
-            "style": "realism",
-            "technics": "oil",
-            "year": "1900"
-        },{
-            "img": "./img/img7.jpg",
-            "name": "Монахиня",
-            "work": "painting",
-            "plot": "portrait",
-            "style": "realism",
-            "technics": "oil",
-            "year": "1901"
-        },
-        {
-            "img": "./img/img8.jpg",
-            "name": "Портрет артистки Т.В. Чижовой",
-            "work": "painting",
-            "plot": "portrait",
-            "style": "realism",
-            "technics": "oil",
-            "year": "1924"
-        }
-
-    ]
+  "pictures": [
+    {
+      "img": "./img/img1.jpg",
+      "name": "Сундучник. Из серии \"Русские типы\"",
+      "work": "painting",
+      "plot": "portrait",
+      "style": "realism",
+      "technics": "oil",
+      "year": "1920"
+    },
+    {
+      "img": "./img/img2.jpg",
+      "name": "Булочник. Из серии \"Русские типы\"",
+      "work": "painting",
+      "plot": "portrait",
+      "style": "realism",
+      "technics": "oil",
+      "year": "1920"
+    },
+    {
+      "img": "./img/img3.jpg",
+      "name": "Купец с купчихой",
+      "work": "painting",
+      "plot": "portrait",
+      "style": "realism",
+      "technics": "oil",
+      "year": "1914"
+    },
+    {
+      "img": "./img/img1.jpg",
+      "name": "Пасхальный обряд (Христосование)",
+      "work": "painting",
+      "plot": "portrait",
+      "style": "realism",
+      "technics": "oil",
+      "year": "1916"
+    },
+    {
+      "img": "./img/img2.jpg",
+      "name": "Трактирщик. Из серии \"Русские типы\"",
+      "work": "painting",
+      "plot": "portrait",
+      "style": "realism",
+      "technics": "oil",
+      "year": "1920"
+    },
+    {
+      "img": "./img/img3.jpg",
+      "name": "Портрет Степана Лукича Никольского",
+      "work": "painting",
+      "plot": "historicalScene",
+      "style": "realism",
+      "technics": "oil",
+      "year": "1901"
+    },
+    {
+      "img": "./img/img7.jpg",
+      "name": "Монахиня",
+      "work": "painting",
+      "plot": "portrait",
+      "style": "realism",
+      "technics": "oil",
+      "year": "1901"
+    },
+    {
+      "img": "./img/img8.jpg",
+      "name": "Портрет артистки Т.В. Чижовой",
+      "work": "painting",
+      "plot": "portrait",
+      "style": "realism",
+      "technics": "oil",
+      "year": "1924"
+    },
+    {
+      "img": "./img/img9.jpg",
+      "name": "Портрет А.Н. Протасовой",
+      "work": "painting",
+      "plot": "portrait",
+      "style": "realism",
+      "technics": "oil",
+      "year": "1900"
+    },
+    {
+      "img": "./img/img7.jpg",
+      "name": "Монахиня",
+      "work": "painting",
+      "plot": "portrait",
+      "style": "realism",
+      "technics": "oil",
+      "year": "1901"
+    },
+    {
+      "img": "./img/img8.jpg",
+      "name": "Портрет артистки Т.В. Чижовой",
+      "work": "painting",
+      "plot": "portrait",
+      "style": "realism",
+      "technics": "oil",
+      "year": "1924"
+    }
+  ]
 }

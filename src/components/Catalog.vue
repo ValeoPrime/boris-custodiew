@@ -70,63 +70,34 @@
               </div>
             </div>
             <div class="views__variants">
-              <button class="views__table"></button>
-              <button class="views__grid"></button>
+              <button class="view__table">
+                <!-- <img src="@/assets/img/" alt=""> -->
+              </button>
+              <button class="view__grid">
+                <img src="@/assets/img/view__grid.png" alt="grid" />
+              </button>
             </div>
           </div>
           <div class="pictures__wrapper">
-            <div class="picture__item" v-for="picture in pictures" :key="picture.year">
-              <div class="picture__img" >
+            <div
+              class="picture__item"
+              v-for="picture in showPictures"
+              :key="picture.year"
+            >
+              <div class="picture__img">
                 <img :src="picture.img" alt="picture" />
               </div>
-              <h3 class="picture__title">{{picture.name}}</h3>
-              <div class="picture__year">{{picture.year}}</div>
+              <h3 class="picture__title">{{ picture.name }}</h3>
+              <div class="picture__year">{{ picture.year }}</div>
             </div>
-            <!-- <div class="picture__item">
-              <div class="picture__img">
-                <img src="./img/pic10.png" alt="picture" />
-              </div>
-              <h3 class="picture__title">Купец с купчихой</h3>
-              <div class="picture__year">1914</div>
-            </div> -->
-            <!-- <div class="picture__item">
-              <div class="picture__img">
-                <img src="@/assets/img/pic4.png" alt="picture" />
-              </div>
-              <h3 class="picture__title">Пасхальный обряд (Христосование)</h3>
-              <div class="picture__year">1916</div>
-            </div>
-            <div class="picture__item">
-              <div class="picture__img">
-                <img src="@/assets/img/pic5.png" alt="picture" />
-              </div>
-              <h3 class="picture__title">
-                Трактирщик. Из серии "Русские типы"
-              </h3>
-              <div class="picture__year">1920</div>
-            </div>
-            <div class="picture__item">
-              <div class="picture__img">
-                <img src="@/assets/img/pic6.png" alt="picture" />
-              </div>
-              <h3 class="picture__title">Портрет Степана Лукича Никольского</h3>
-              <div class="picture__year">1901</div>
-            </div>
-            <div class="picture__item">
-              <div class="picture__img">
-                <img src="@/assets/img/pic7.png" alt="picture" />
-              </div>
-              <h3 class="picture__title">Монахиня</h3>
-              <div class="picture__year">1901</div>
-            </div>
-            <div class="picture__item">
-              <div class="picture__img">
-                <img src="@/assets/img/pic2.png" alt="picture" />
-              </div>
-              <h3 class="picture__title">Булочник. Из серии "Русские типы"</h3>
-              <div class="picture__year">1920</div>
-            </div> -->
           </div>
+          <Pagination
+            v-if="filteredPictures"
+            v-bind:data="filteredPictures"
+            v-bind:offset="offset"
+            v-bind:curentPaginationItem="curentPaginationItem"
+            v-on:paginationChange="paginationHandler"
+          />
         </div>
       </div>
     </div>
@@ -136,15 +107,14 @@
 <script>
 import TextAccordion from "@/components/TextAccordion.vue";
 import InputsAccordeon from "@/components/InputsAccordeon.vue";
-// import fetchData from "@/helper.js";
+import Pagination from "@/components/Pagination.vue";
 async function fetchData(path) {
   const result = await fetch(`./data/${path}.json`)
     .then((response) => {
       return response.json();
     })
     .then((data) => {
-      console.log("data",data);
-      return data.pictures ;
+      return data.pictures;
     });
   return result;
 }
@@ -152,10 +122,24 @@ export default {
   components: {
     TextAccordion,
     InputsAccordeon,
+    Pagination,
+  },
+  created: async function() {
+    this.pictures = await fetchData("rarity");
+    if (this.filterTags.length == 0) {
+      this.filteredPictures = this.pictures;
+      this.paginationHandler(1);
+    }
   },
   data() {
     return {
       pictures: null,
+      offset: 10,
+      filteredPictures: [],
+      filterTags: [],
+      showPictures: [],
+      curentPaginationItem: 0,
+
       works: {
         title: "Работы",
         searchInput: false,
@@ -212,66 +196,79 @@ export default {
         dataArr: [
           {
             id: "portrait",
+            plot: "portrait",
             plotStyle: "Портрет",
             checked: false,
           },
           {
             id: "genreScene",
+            plot: "genreScene",
             plotStyle: "Жанровая сцена",
             checked: false,
           },
           {
             id: "scenery",
+            plot: "scenery",
             plotStyle: "Пейзаж",
             checked: false,
           },
           {
             id: "literaryScene",
+            plot: "literaryScene",
             plotStyle: "Литературная сцена",
             checked: false,
           },
           {
             id: "urbanLandscape",
+            plot: "urbanLandscape",
             plotStyle: "Городской пейзаж",
             checked: false,
           },
           {
             id: "nude",
+            plot: "nude",
             plotStyle: "Ню",
             checked: false,
           },
           {
             id: "Interior",
+            plot: "Interior",
             plotStyle: "Интерьер",
             checked: false,
           },
           {
             id: "stillLife",
+            plot: "stillLife",
             plotStyle: "Натюрморт",
             checked: false,
           },
           {
             id: "allegoricalScene",
+            plot: "allegoricalScene",
             plotStyle: "Аллегорическая сцена",
             checked: false,
           },
           {
             id: "historicalScene",
+            plot: "historicalScene",
             plotStyle: "Историческая сцена",
             checked: false,
           },
           {
             id: "architecture",
+            plot: "architecture",
             plotStyle: "Архитектура",
             checked: false,
           },
           {
             id: "animalism",
+            plot: "animalism",
             plotStyle: "Анимализм",
             checked: false,
           },
           {
             id: "religiousScene",
+            plot: "religiousScene",
             plotStyle: "Религиозная сцена",
             checked: false,
           },
@@ -285,46 +282,55 @@ export default {
         dataArr: [
           {
             id: "realism",
+            style: "realism",
             plotStyle: "Реализм",
             checked: false,
           },
           {
             id: "modern",
+            style: "modern",
             plotStyle: "Модерн",
             checked: false,
           },
           {
             id: "impressionism",
+            style: "impressionism",
             plotStyle: "Импрессионизм",
             checked: false,
           },
           {
             id: "socialistRealism",
+            style: "socialistRealism",
             plotStyle: "Соцреализм",
             checked: false,
           },
           {
             id: "primitivism",
+            style: "primitivism",
             plotStyle: "Примитивизм",
             checked: false,
           },
           {
             id: "artNouveau",
+            style: "artNouveau",
             plotStyle: "Ар Нуво",
             checked: false,
           },
           {
             id: "surrealism",
+            style: "surrealism",
             plotStyle: "Сюрреализм",
             checked: false,
           },
           {
             id: "surrealism",
+            style: "surrealism",
             plotStyle: "Сюрреализм",
             checked: false,
           },
           {
             id: "surrealism",
+            style: "surrealism",
             plotStyle: "Сюрреализм",
             checked: false,
           },
@@ -338,61 +344,73 @@ export default {
         dataArr: [
           {
             id: "oil",
+            technics: "oil",
             plotStyle: "Масло",
             checked: false,
           },
           {
             id: "watercolor",
+            technics: "watercolor",
             plotStyle: "Акварель ",
             checked: false,
           },
           {
             id: "graphitePencil",
+            technics: "graphitePencil",
             plotStyle: "Графитный карандаш",
             checked: false,
           },
           {
             id: "gouache",
+            technics: "gouache",
             plotStyle: "Гуашь",
             checked: false,
           },
           {
             id: "pastel",
+            technics: "pastel",
             plotStyle: "Пастель",
             checked: false,
           },
           {
             id: "mascara",
+            technics: "mascara",
             plotStyle: "Тушь",
             checked: false,
           },
           {
             id: "graphite",
+            technics: "graphite",
             plotStyle: "Графит",
             checked: false,
           },
           {
             id: "colorPencil",
+            technics: "colorPencil",
             plotStyle: "Цветной карандаш",
             checked: false,
           },
           {
             id: "coal",
+            technics: "coal",
             plotStyle: "Уголь",
             checked: false,
           },
           {
             id: "chalk",
+            technics: "chalk",
             plotStyle: "Мел",
             checked: false,
           },
           {
             id: "engraving",
+            technics: "engraving",
             plotStyle: "Гравюра",
             checked: false,
           },
           {
             id: "pen",
+            technics: "pen",
             plotStyle: "Перо",
             checked: false,
           },
@@ -421,8 +439,6 @@ export default {
           },
         ],
       },
-
-      filterTags: [],
     };
   },
   methods: {
@@ -433,7 +449,7 @@ export default {
         tab.classList.remove("active__tab");
       });
       e.target.classList.add("active__tab");
-      this.pictures = await fetchData(e.target.id)
+      this.pictures = await fetchData(e.target.id);
       console.log(this.pictures);
     },
 
@@ -448,15 +464,21 @@ export default {
       this.filterTags = this.filterTags.filter((tag) => tag.id !== item.id);
       //фильтрация
     },
+    paginationHandler: function(id) {
+      console.log("Фильтруем по", id);
+      this.showPictures = this.filteredPictures.slice(
+        id * this.offset - this.offset,
+        id * this.offset
+      );
+      this.curentPaginationItem = id;
+      console.log("this.showPictures", this.showPictures);
+    },
     quickSearch: function(value) {
       console.log(value);
     },
     rangeSearch: function(value, id) {
       console.log(value, id);
     },
-  },
-   mounted: async function() {
-    this.pictures = await fetchData("rarity")
   },
 };
 </script>
@@ -533,16 +555,24 @@ export default {
             position: absolute
             top: 0
             right: 0
+            display: flex
+            align-items: center
             button
                 width: 15px
                 height: 15px
-                background-color: #202020;
+                img
+                    width: 100%
+                    height: 100%
+            .view__table
+                margin-right: 20px
+
 
     .pictures__wrapper
         display: flex
         justify-content: space-between
         flex-wrap: wrap
         padding-top: 20px
+        position: relative
 
     .picture__item
         width: 280px
