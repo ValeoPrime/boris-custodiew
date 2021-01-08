@@ -751,8 +751,7 @@ export default {
 
 @media screen and (max-width: 768px)
   .catalog
-    padding: 30px 0 0
-    .container
+    padding: 30px 0 0px
     .catalog__inner
       padding: 0px 20px 60px
     .tabs__container

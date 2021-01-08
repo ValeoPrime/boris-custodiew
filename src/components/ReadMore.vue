@@ -16,7 +16,6 @@ export default {};
         padding: 0 0
         outline: none
         background-color: transparent
-        margin-top: 64px
         font-family: Helvetica, sans-serif
         font-size: 14px
         line-height: 40px

@@ -102,6 +102,12 @@ export default {
                 padding: 0 10px 0 0
             .creation__specification__img
                 margin-left: 80px
+                img
+                  min-width: 100%
+
+        .creation__picture
+          img
+            max-width: 100%
 
         .creation__inner
             padding: 40px 0 100px
@@ -114,9 +120,66 @@ export default {
         .social__buttons__wrapper
             margin-top: 60px
         .readmore__wrap
+            margin-top: 60px
             .read__more
                 button
                     margin-left: 0
                     margin-right: auto
+
+@media screen and (max-width: 1024px)
+  .creation
+    padding: 100px 0 0
+    .container
+        .creation__wrapper
+            display: flex
+            padding-bottom: 40px
+            border-bottom: 1px solid #E5E5E5;
+            .creation__title
+                padding-right: 40px
+                padding-left: 20px
+            .creation__descr
+                padding: 0 20px
+
+@media screen and (max-width: 650px)
+  .creation
+    padding: 60px 0 0
+    .container
+        .creation__wrapper
+            display: flex
+            flex-direction: column
+            .creation__title
+                padding-right: 40px
+                padding-left: 20px
+            .creation__descr
+                padding: 20px 20px 0
+        .creation__specification
+            display: flex
+            padding: 40px 20px 20px
+            flex-direction: column
+            .creation__specification__descr
+                padding: 0 10px 0 0
+            .creation__specification__img
+                margin: 40px auto 0 auto
+                width: 280px
+        .creation__picture
+          margin: 20px 20px 0
+        .creation__inner
+            padding: 40px 20px 130px
+            margin-bottom: 10px //
+            flex-direction: column
+            align-items: center
+            .creation__features, .creation__hang
+                max-width: 440px
+            .creation__hang
+                margin-top: 20px
+                margin-left: 0
+        .readmore__wrap
+          margin-top: 20px
+
+        .social__buttons__wrapper
+            bottom: 60px
+            margin-top: 0
+
+
 
 </style>

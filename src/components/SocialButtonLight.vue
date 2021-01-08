@@ -1,7 +1,7 @@
 <template>
   <div
-    class="ya-share2"
-    id="ya-share2"
+    class="ya-share"
+    id="ya-shareLight"
     data-curtain
     data-services="vkontakte,facebook,twitter"
   ></div>
@@ -24,17 +24,17 @@ export default {
       });
     },
   },
-  created: function() {
-    this.yandex_shared("ya-share2");
+  mounted: function() {
+    this.yandex_shared("ya-shareLight");
   },
   updated: function() {
-    this.yandex_shared("ya-share2");
+    this.yandex_shared("ya-shareLight");
   },
 };
 </script>
 
 <style lang="sass">
-#ya-share2
+#ya-shareLight
   .ya-share2__icon
     height: 25px
     width: 54px
@@ -57,7 +57,7 @@ export default {
   .ya-share2__list
       display: flex
 @media screen and (max-width: 400px)
-  #ya-share2
+  #ya-shareLight
     .ya-share2__icon
         height: 34px
         width: 50px

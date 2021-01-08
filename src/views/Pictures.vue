@@ -1,7 +1,7 @@
 <template>
   <PicturesHeader />
   <Catalog />
-  <!-- <Footer /> -->
+  <Footer />
 </template>
 
 <script>

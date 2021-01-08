@@ -47,7 +47,6 @@ export default {
           },
           {
             iconLayout: "default#image",
-            // Своё изображение иконки метки.
             iconImageHref: "./img/MapMarker.svg",
             iconImageSize: [30, 40],
           }
@@ -61,7 +60,6 @@ export default {
 
 <style lang="sass" scoped>
 .container
-    width: 1200px
     display: flex
     flex-direction: column
 .museums__title
@@ -105,4 +103,31 @@ export default {
     line-height: 24px;
     color: #BFBFBF;
     margin-top: 20px
+
+@media screen and (max-width: 1024px)
+  .museums__adresses
+    margin: 0 auto
+    min-width: 320px
+    max-width: 100%
+    padding: 40px 0 100px
+    display: flex
+    justify-content: center
+    align-items: center
+  .museum__adress
+      padding-left: 30px
+      padding-right: 30px
+@media screen and (max-width: 910px)
+  .museums__adresses
+    padding: 0 0 100px
+    flex-direction: column
+  .museum__adress
+      padding-top: 40px
+      padding-left: 25px
+      padding-right: 80px
+      padding-bottom: 40px
+      width: 320px
+  .museum__adress
+      border-left: 0
+      border-bottom: 1px solid #E5E5E5;
+
 </style>

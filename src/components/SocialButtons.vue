@@ -19,13 +19,12 @@ export default {
           limit: 3,
           size: "m",
           bare: false,
-          direction: "horizontal"
+          direction: "horizontal",
         },
       });
     },
   },
   created: function() {
-    console.log(this.theme);
     this.yandex_shared("ya-share2");
   },
   updated: function() {
@@ -35,11 +34,12 @@ export default {
 </script>
 
 <style lang="sass">
+
 #ya-share2
   .ya-share2__icon
     height: 34px
     width: 94px
-    border: 1px solid #BFBFBF;
+
     box-sizing: border-box;
     background-color: transparent
     background-repeat: no-repeat
@@ -50,6 +50,8 @@ export default {
     background-image: url('~@/assets/img/Twit.svg')
   .ya-share2__item_service_twitter .ya-share2__icon
     background-image: url('~@/assets/img/Fb.svg')
+  .ya-share2__list.ya-share2__list_direction_horizontal > .ya-share2__item
+    border: 0.65px solid #BFBFBF;
 
   .ya-share2__badge
       background-color: transparent
@@ -62,7 +64,4 @@ export default {
     .ya-share2__icon
         height: 34px
         width: 84px
-
-
-
 </style>
