@@ -131,9 +131,9 @@ export default {
     Pagination,
   },
   created: async function() {
-    this.pictures = await fetchData("rarity");
+    this.pictures[this.currentTab] = await fetchData(this.currentTab);
     if (this.filterTags.length == 0) {
-      this.filteredPictures = this.pictures;
+      this.filteredPictures = this.pictures[this.currentTab];
       this.paginationHandler(1);
     } else {
       this.filteredPictures = this.filterPictures(this.filterTags);
@@ -142,7 +142,13 @@ export default {
   },
   data() {
     return {
-      pictures: null,
+      currentTab:'rarity',
+      pictures: {
+        rarity:[],
+        new:[],
+        antiques:[],
+        philately:[]
+      },
       offset: 10,
       filteredPictures: [],
       filterTags: [],
@@ -441,7 +447,7 @@ export default {
             id: "period 1",
             year: "period 1",
             plotStyle: "до 1900",
-            checked: true,
+            checked: false,
           },
           {
             id: "period 2",
@@ -467,7 +473,12 @@ export default {
         tab.classList.remove("active__tab");
       });
       e.target.classList.add("active__tab");
-      this.pictures = await fetchData(e.target.id);
+      if(this.pictures[e.target.id].length){
+        this.currentTab = e.target.id
+      } else {
+        this.currentTab = e.target.id
+        this.pictures[this.currentTab] = await fetchData(e.target.id);
+      }
     },
 
     viewsHandler: function(id) {
@@ -489,6 +500,7 @@ export default {
         pictures.forEach((picture) => {
           picture.style.width = 200 + "px";
         });
+
       } else {
         catalogFilters.style.paddingRight = 118 + "px";
         catalogFilters.style.minWidth = 318 + "px";
@@ -501,9 +513,7 @@ export default {
     },
 
     showFilters: function(){
-
       const filter = document.querySelector('.catalog__filters')
-      console.log('clik',filter);
       filter.classList.toggle('filters__show')
     },
 
@@ -526,27 +536,29 @@ export default {
     },
 
     filterPictures: function(filterTags) {
-      let result = this.pictures;
+      console.log(filterTags, this.currentTab);
+      const pictures = this.pictures[this.currentTab]
+      let result = [];
       filterTags.forEach((filter) => {
         if (filter.plot) {
-          result = result.filter((pic) => pic.plot == filter.plot);
+          result = result.concat(pictures.filter((pic) => pic.plot == filter.plot)) ;
         }
         if (filter.style) {
-          result = result.filter((pic) => pic.style == filter.style);
+          result = result.concat(pictures.filter((pic) => pic.style == filter.style)) ;
         }
         if (filter.technics) {
-          result = result.filter((pic) => pic.technics == filter.technics);
+          result = result.concat(pictures.filter((pic) => pic.technics == filter.technics)) ;
         }
         if (filter.year) {
           switch (filter.year) {
             case "period 1":
-              result = result.filter((pic) => pic.year <= 1900);
+              result = result.concat(pictures.filter((pic) => pic.year <= 1900)) ;
             case "period 2":
-              result = result.filter(
+              result = result.concat(pictures.filter(
                 (pic) => pic.year > 1901 && pic.year < 1916
-              );
+              ))
             case "period 3":
-              result = result.filter((pic) => pic.year >= 1917);
+              result = result.concat(pictures.filter((pic) => pic.year >= 1917))
           }
         }
       });
