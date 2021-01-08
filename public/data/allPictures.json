@@ -1,6 +1,15 @@
 {
   "pictures": [
     {
+      "img": "./img/img3.jpg",
+      "name": "Масленица",
+      "work": "painting",
+      "plot": "portrait",
+      "style": "realism",
+      "technics": "oil",
+      "year": "1914"
+    },
+    {
       "img": "./img/img1.jpg",
       "name": "Сундучник. Из серии \"Русские типы\"",
       "work": "painting",
@@ -11,7 +20,7 @@
     },
     {
       "img": "./img/img2.jpg",
-      "name": "Булочник. Из серии \"Русские типы\"",
+      "name": "Кушато подано",
       "work": "painting",
       "plot": "portrait",
       "style": "realism",
@@ -19,17 +28,8 @@
       "year": "1920"
     },
     {
-      "img": "./img/img3.jpg",
-      "name": "Купец с купчихой",
-      "work": "painting",
-      "plot": "portrait",
-      "style": "realism",
-      "technics": "oil",
-      "year": "1914"
-    },
-    {
-      "img": "./img/img1.jpg",
-      "name": "Пасхальный обряд (Христосование)",
+      "img": "./img/img4.jpg",
+      "name": "Большевик",
       "work": "painting",
       "plot": "portrait",
       "style": "realism",
@@ -37,8 +37,17 @@
       "year": "1916"
     },
     {
+      "img": "./img/img1.jpg",
+      "name": "Сундучник. Из серии \"Русские типы\"",
+      "work": "painting",
+      "plot": "portrait",
+      "style": "realism",
+      "technics": "oil",
+      "year": "1920"
+    },
+    {
       "img": "./img/img2.jpg",
-      "name": "Трактирщик. Из серии \"Русские типы\"",
+      "name": "Кушато подано",
       "work": "painting",
       "plot": "portrait",
       "style": "realism",
@@ -47,57 +56,91 @@
     },
     {
       "img": "./img/img3.jpg",
-      "name": "Портрет Степана Лукича Никольского",
-      "work": "painting",
-      "plot": "historicalScene",
-      "style": "realism",
-      "technics": "oil",
-      "year": "1901"
-    },
-    {
-      "img": "./img/img7.jpg",
-      "name": "Монахиня",
+      "name": "Масленица",
       "work": "painting",
       "plot": "portrait",
       "style": "realism",
       "technics": "oil",
-      "year": "1901"
+      "year": "1914"
     },
     {
-      "img": "./img/img8.jpg",
-      "name": "Портрет артистки Т.В. Чижовой",
+      "img": "./img/img4.jpg",
+      "name": "Большевик",
       "work": "painting",
       "plot": "portrait",
       "style": "realism",
       "technics": "oil",
-      "year": "1924"
-    },
-    {
-      "img": "./img/img9.jpg",
-      "name": "Портрет А.Н. Протасовой",
+      "year": "1916"
+    },{
+      "img": "./img/img1.jpg",
+      "name": "Сундучник. Из серии \"Русские типы\"",
       "work": "painting",
       "plot": "portrait",
       "style": "realism",
       "technics": "oil",
-      "year": "1900"
+      "year": "1920"
     },
     {
-      "img": "./img/img7.jpg",
-      "name": "Монахиня",
+      "img": "./img/img2.jpg",
+      "name": "Кушато подано",
       "work": "painting",
       "plot": "portrait",
       "style": "realism",
       "technics": "oil",
-      "year": "1901"
+      "year": "1920"
     },
     {
-      "img": "./img/img8.jpg",
-      "name": "Портрет артистки Т.В. Чижовой",
+      "img": "./img/img3.jpg",
+      "name": "Масленица",
       "work": "painting",
       "plot": "portrait",
       "style": "realism",
       "technics": "oil",
-      "year": "1924"
+      "year": "1914"
+    },
+    {
+      "img": "./img/img4.jpg",
+      "name": "Большевик",
+      "work": "painting",
+      "plot": "portrait",
+      "style": "realism",
+      "technics": "oil",
+      "year": "1916"
+    },{
+      "img": "./img/img1.jpg",
+      "name": "Сундучник. Из серии \"Русские типы\"",
+      "work": "painting",
+      "plot": "portrait",
+      "style": "realism",
+      "technics": "oil",
+      "year": "1920"
+    },
+    {
+      "img": "./img/img2.jpg",
+      "name": "Кушато подано",
+      "work": "painting",
+      "plot": "portrait",
+      "style": "realism",
+      "technics": "oil",
+      "year": "1920"
+    },
+    {
+      "img": "./img/img3.jpg",
+      "name": "Масленица",
+      "work": "painting",
+      "plot": "portrait",
+      "style": "realism",
+      "technics": "oil",
+      "year": "1914"
+    },
+    {
+      "img": "./img/img4.jpg",
+      "name": "Большевик",
+      "work": "painting",
+      "plot": "portrait",
+      "style": "realism",
+      "technics": "oil",
+      "year": "1916"
     }
   ]
 }

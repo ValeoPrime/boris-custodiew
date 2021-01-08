@@ -6,26 +6,27 @@
           <div class="carousel__pagination__wrapper">
             <div
               class="pagination__item__wrapper"
+              v-bind:class="{ active__pagination: index + 1 == sliderActive }"
               v-for="(slide, index) in sliderList"
               v-bind:key="index"
               v-on:click="openSlide(index + 1)"
+              v-bind:style="{ left: sliderOffsetLeft / 6 + 'px' }"
             >
               <img :src="slide.img" alt="image" class="pagination__item" />
             </div>
           </div>
         </div>
         <div class="carousel__inner">
-          <div
-            class="carousel__slides"
-            v-bind:style="{ left: sliderOffsetLeft + 'px' }"
-          >
-            <img
-              class="carousel__item"
-              v-for="(slide, index) in sliderList"
-              v-bind:key="index"
-              :src="slide.img"
-              alt="image"
-            />
+          <div class="carousel__slides">
+            <transition name="fade">
+              <img
+                class="carousel__item"
+                v-if="sliderList[sliderActive]"
+                :src="sliderList[sliderActive - 1].img"
+                :key="sliderActive"
+                alt="image"
+              />
+            </transition>
           </div>
         </div>
 
@@ -49,7 +50,7 @@
               />
             </svg>
           </div>
-          <h3 class="slider__title">{{ sliderList[sliderActive].name }}</h3>
+          <h3 class="slider__title">{{ sliderList[sliderActive - 1].name }}</h3>
           <div class="slider__count">
             {{ sliderActive }} <span>/ {{ sliderList.length }}</span>
           </div>
@@ -73,8 +74,12 @@
             </svg>
           </div>
         </div>
-        <router-link class="allPictures allPictures--ful" to="/Pictures"><span>все картины</span></router-link>
-        <router-link class="allPictures allPictures--mob" to="/Pictures"><span>все картины</span></router-link>
+        <router-link class="allPictures allPictures--ful" to="/Pictures"
+          ><span>все картины</span></router-link
+        >
+        <router-link class="allPictures allPictures--mob" to="/Pictures"
+          ><span>все картины</span></router-link
+        >
       </div>
     </div>
   </section>
@@ -84,15 +89,14 @@
 export default {
   data() {
     return {
-      // Всего слайдов
       sliderAllCount: 0,
-      // Номер активного слайда
+
       sliderActive: 1,
       // Отступ тела со слайдами в контейнере
       sliderOffsetLeft: 0,
       // Шаг одного слайда = его длина
       sliderOffsetStep: 0,
-      // Список изображений
+      // Список слайдов
       sliderList: [
         { img: "./img/SliderImage.jpg" },
         { img: "./img/SliderImage2.jpg" },
@@ -103,22 +107,54 @@ export default {
   },
 
   methods: {
-    // Иницилизация слайдера
     initSlider: function() {
-      // Получаем элементы сладера и его слайдов
       let sliderBody = this.$el.querySelector(".carousel");
-      let sliderSlidies = sliderBody.querySelectorAll(".carousel__item");
-      // Записываем длину одного слайда для перелистывания
+
       this.sliderOffsetStep = sliderBody.clientWidth;
-      // Общее количество слайдов для стопов
-      this.sliderAllCount = sliderSlidies.length;
+      this.sliderAllCount = this.sliderList.length;
+
+      const carousel = document.querySelector(".carousel");
+      let startMousePos = 0;
+      let startTouchPos = 0;
+      let endTouchPos = 0;
+
+      carousel.addEventListener(
+        "mousedown",
+        (e) => (startMousePos = e.clientX)
+      );
+
+      carousel.addEventListener("mouseup", (e) => {
+        if (startMousePos - e.clientX > 30) {
+          this.nextSlide(e);
+        }
+        if (startMousePos - e.clientX < -30) {
+          this.prevSlide(e);
+        }
+      });
+
+      carousel.addEventListener(
+        "touchstart",
+        (e) => (startTouchPos = e.touches[0].clientX)
+      );
+      carousel.addEventListener(
+        "touchmove",
+        (e) => (endTouchPos = e.touches[e.touches.length - 1].clientX)
+      );
+
+      carousel.addEventListener("touchend", (e) => {
+        if (startTouchPos - endTouchPos > 10) {
+          this.nextSlide();
+        }
+        if (startTouchPos - endTouchPos < -10) {
+          this.prevSlide();
+        }
+      });
     },
 
-    // Открыть слайд по номеру
     openSlide: function(id) {
       if (id > 0 && id <= this.sliderAllCount) {
         this.sliderActive = id;
-        // Сдвигаем элемент со слайдами
+
         this.sliderOffsetLeft = -(
           this.sliderActive * this.sliderOffsetStep -
           this.sliderOffsetStep
@@ -126,7 +162,6 @@ export default {
       }
     },
 
-    // Следующий слайд
     nextSlide: function() {
       if (this.sliderActive < this.sliderAllCount) {
         this.sliderActive += 1;
@@ -134,17 +169,17 @@ export default {
         this.disableLeftSwitch ? (this.disableLeftSwitch = false) : null;
         if (this.sliderActive == this.sliderAllCount) {
           this.disableRightSwitch = true;
-        } else {
+        }
+        if (this.sliderActive == 0) {
           this.disableRightSwitch = false;
         }
       }
     },
 
-    // Предыдущий слайд
     prevSlide: function() {
       if (this.sliderActive > 1) {
         this.sliderActive -= 1;
-        this.openSlide(this.sliderActive);
+
         this.disableSwitch = false;
         this.disableRightSwitch ? (this.disableRightSwitch = false) : null;
         if (this.sliderActive == 1) {
@@ -156,23 +191,19 @@ export default {
     },
   },
 
-  mounted() {
-    this.initSlider();
-
-    // Перенастройка слайдера при ресайзе окна
-    window.addEventListener("resize", () => {
-      this.initSlider();
-      this.openSlide(this.sliderActive);
-    });
-
-    fetch("./data/allPictures.json")
+  mounted: async function() {
+    this.sliderList = await fetch("./data/allPictures.json")
       .then((response) => {
         return response.json();
       })
       .then((data) => {
-        this.sliderList = data.pictures;
         console.log(data.pictures);
+        return data.pictures;
       });
+    this.initSlider();
+    window.addEventListener("resize", () => {
+      this.openSlide(this.sliderActive);
+    });
   },
 };
 </script>
@@ -180,7 +211,9 @@ export default {
 <style lang="sass" scoped>
 .slider
   background: #202020;
+  transition: all 1s
 .carousel
+  width: 100%
   padding-top: 40px
   position: relative
 .carousel__pagination
@@ -211,7 +244,7 @@ export default {
     left: 0
     background-color: rgba(0, 0, 0, 0.45 )
     z-index: 10
-.active
+.active__pagination
   &:after
     background-color: rgba(0, 0, 0, 0 )
 
@@ -266,6 +299,7 @@ export default {
   background-size: cover;
   background-position: center;
   flex: 1 100%;
+  // animation: bounce-in .5s;
 
 
 
@@ -297,6 +331,39 @@ export default {
 
     .carousel__right
         right: 0;
+
+.fade-enter-active
+  animation: bounce-on 2s ease-in;
+
+.fade-leave-active
+  animation: bounce-in 1s ease-in;
+
+@keyframes bounce-in
+  0%
+    opacity: 1;
+  25%
+  opacity: 0.75;
+  50%
+    opacity: 0.5;
+  75%
+    opacity: 0.25;
+  100%
+    opacity: 0;
+
+@keyframes bounce-on
+  0%
+    opacity: 0;
+  25%
+  opacity: 0.25;
+  50%
+    opacity: 0.5;
+  75%
+    opacity: 0.75;
+  100%
+    opacity: 1;
+
+
+
 
 @media screen and (max-width: 950px)
   .container
