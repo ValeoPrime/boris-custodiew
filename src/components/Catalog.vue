@@ -1,39 +1,43 @@
 <template>
   <section class="catalog">
     <div class="container">
-      <div class="catalog__tabs">
-        <ul class="catalog__tabs__list">
-          <li
-            v-on:click="tabsHandler($event)"
-            class="catalog__tab__item active__tab"
-            id="rarity"
-          >
-            Раритет
-          </li>
-          <li
-            v-on:click="tabsHandler($event)"
-            class="catalog__tab__item"
-            id="new"
-          >
-            Новые
-          </li>
-          <li
-            v-on:click="tabsHandler($event)"
-            class="catalog__tab__item"
-            id="antiques"
-          >
-            Антиквариат
-          </li>
-          <li
-            v-on:click="tabsHandler($event)"
-            class="catalog__tab__item"
-            id="philately"
-          >
-            Филателия
-          </li>
-        </ul>
+      <div class="tabs__container">
+        <div class="catalog__tabs">
+          <ul class="catalog__tabs__list">
+            <li
+              v-on:click="tabsHandler($event)"
+              class="catalog__tab__item active__tab"
+              id="rarity"
+            >
+              Раритет
+            </li>
+            <li
+              v-on:click="tabsHandler($event)"
+              class="catalog__tab__item"
+              id="new"
+            >
+              Новые
+            </li>
+            <li
+              v-on:click="tabsHandler($event)"
+              class="catalog__tab__item"
+              id="antiques"
+            >
+              Антиквариат
+            </li>
+            <li
+              v-on:click="tabsHandler($event)"
+              class="catalog__tab__item"
+              id="philately"
+            >
+              Филателия
+            </li>
+          </ul>
+        </div>
       </div>
+
       <div class="catalog__inner">
+        <div v-on:click="showFilters" class="filters__mobile">Фильтры</div>
         <div class="catalog__filters">
           <TextAccordion v-bind:works="works" />
           <InputsAccordeon
@@ -86,7 +90,9 @@
               <h3 class="picture__title">{{ picture.name }}</h3>
               <div class="picture__year">{{ picture.year }}</div>
             </div>
-            <div v-if="showPictures.length == 0" class="empty__message">По таким критериям картин не нашлось ¯\_(ツ)_/¯</div>
+            <div v-if="showPictures.length == 0" class="empty__message">
+              По таким критериям картин не нашлось ¯\_(ツ)_/¯
+            </div>
           </div>
           <Pagination
             v-if="filteredPictures"
@@ -106,6 +112,7 @@ import ViewsVariants from "@/components/ViewsVariants.vue";
 import TextAccordion from "@/components/TextAccordion.vue";
 import InputsAccordeon from "@/components/InputsAccordeon.vue";
 import Pagination from "@/components/Pagination.vue";
+
 async function fetchData(path) {
   const result = await fetch(`./data/${path}.json`)
     .then((response) => {
@@ -129,7 +136,7 @@ export default {
       this.filteredPictures = this.pictures;
       this.paginationHandler(1);
     } else {
-      this.filteredPictures = this.filterPictures(this.filterTags)
+      this.filteredPictures = this.filterPictures(this.filterTags);
       this.paginationHandler(1);
     }
   },
@@ -148,49 +155,49 @@ export default {
         worksArr: [
           {
             id: "painting ",
-            work:"painting",
+            work: "painting",
             workStyle: "Живопись",
             worksCount: 383,
           },
           {
             id: "drawings-illustrations",
-            work:"drawings-illustrations",
+            work: "drawings-illustrations",
             workStyle: "Рисунки и иллюстрации",
             worksCount: 110,
           },
           {
             id: "theatrical-decorative",
-            work:"theatrical-decorative",
+            work: "theatrical-decorative",
             workStyle: "Театрально-декорационное",
             worksCount: 22,
           },
           {
             id: "graphic",
-            work:"graphic",
+            work: "graphic",
             workStyle: "Графика",
             worksCount: 22,
           },
           {
             id: "engraving",
-            work:"engraving",
+            work: "engraving",
             workStyle: "Гравюра",
             worksCount: 10,
           },
           {
             id: "poster",
-            work:"poster",
+            work: "poster",
             workStyle: "Плакат",
             worksCount: 9,
           },
           {
             id: "sculpture",
-            work:"sculpture",
+            work: "sculpture",
             workStyle: "Скульптура",
             worksCount: 5,
           },
           {
             id: "decorative",
-            work:"decorative",
+            work: "decorative",
             workStyle: "Декоративно-прикладное",
             worksCount: 2,
           },
@@ -453,6 +460,7 @@ export default {
     };
   },
   methods: {
+
     tabsHandler: async function(e) {
       const allTabs = document.querySelectorAll(".catalog__tab__item");
       allTabs.forEach((tab) => {
@@ -492,22 +500,29 @@ export default {
       this.showVariant = id;
     },
 
+    showFilters: function(){
+
+      const filter = document.querySelector('.catalog__filters')
+      console.log('clik',filter);
+      filter.classList.toggle('filters__show')
+    },
+
     checkboxHandler: function(item) {
       if (item.checked) {
         this.filterTags.push(item);
-        this.filteredPictures = this.filterPictures(this.filterTags)
-        this.paginationHandler(1)
+        this.filteredPictures = this.filterPictures(this.filterTags);
+        this.paginationHandler(1);
       } else {
         this.filterTags = this.filterTags.filter((tag) => tag.id !== item.id);
-        this.filteredPictures = this.filterPictures(this.filterTags)
-        this.paginationHandler(1)
+        this.filteredPictures = this.filterPictures(this.filterTags);
+        this.paginationHandler(1);
       }
     },
 
     removeTag: function(item) {
       this.filterTags = this.filterTags.filter((tag) => tag.id !== item.id);
-      this.filteredPictures = this.filterPictures(this.filterTags)
-      this.paginationHandler(1)
+      this.filteredPictures = this.filterPictures(this.filterTags);
+      this.paginationHandler(1);
     },
 
     filterPictures: function(filterTags) {
@@ -535,7 +550,7 @@ export default {
           }
         }
       });
-      return result
+      return result;
     },
     paginationHandler: function(id) {
       this.showPictures = this.filteredPictures.slice(
@@ -567,12 +582,12 @@ export default {
         font-size: 20px;
         line-height: 23px;
         color: #C4C4C4;
-        min-width: 920px
         border-bottom: 1px solid #E5E5E5;
         .catalog__tabs__list
             display: flex
             .catalog__tab__item
-                cursor: pointer
+              display: inline-block
+              cursor: pointer
             .catalog__tab__item + .catalog__tab__item
                 margin-left: 40px
             .active__tab
@@ -583,11 +598,33 @@ export default {
     .catalog__inner
         display: flex
         padding-top: 40px
+
+        .filters__mobile
+          display: none
+          width: 280px
+          margin: 40px auto
+          padding: 5px 30px 5px 15px
+          border: 1px solid #E5E5E5;
+          font-family: Helvetica, sans-serif
+          font-size: 12px;
+          line-height: 26px;
+          color: #4B4B4B;
+          position: relative
+          &::before
+            content: ''
+            position: absolute
+            top: 10px
+            right: 10px
+            width: 17px
+            height: 17px
+            background-image: url('~@/assets/img/filtersMobile.svg')
     .catalog__filters
         min-width: 318px
         max-width: 318px
         padding-right: 118px
         transition: all 1s
+
+
 
     .catalog__galery
         width: 100%
@@ -641,6 +678,7 @@ export default {
         text-align: center;
         color: #4B4B4B;
         margin-bottom: 20px
+        transition: all 1s
         img
             max-width: 100%
         .picture__title
@@ -649,6 +687,7 @@ export default {
             font-size: inherit
             margin-block-start: 0
             margin-block-end: 0
+
     .empty__message
       font-family: Yeseva One,sans-serif
       font-style: normal;
@@ -656,4 +695,60 @@ export default {
       font-size: 20px;
       line-height: 23px;
       text-align: center
+
+@media screen and (max-width: 1024px)
+  .catalog
+    .catalog__inner
+      padding: 40px 20px 60px
+      position: relative
+    .catalog__filters
+        min-width: 220px
+        max-width: 220px
+        padding: 0 20px 0 0
+    .pictures__wrapper
+      padding-top: 0
+      justify-content: space-around
+    .tabs__container
+      overflow-x: scrol
+      padding-left: 20px
+
+
+@media screen and (max-width: 830px)
+  .catalog
+    .pictures__wrapper
+     margin-top: 0
+    .catalog__inner
+      padding: 0px 20px 60px
+      display: block
+      .filters__mobile
+        display: block
+      .catalog__filters
+        display: none
+        position: absolute
+        min-width: 300px
+        max-width: 300px
+        top: 60px
+        left: 30px
+        background: #fff;
+        z-index: 10
+      .filters__show
+          display: block
+    .picture__item
+        width: 200px
+
+
+@media screen and (max-width: 768px)
+  .catalog
+    padding: 30px 0 0
+    .container
+    .catalog__inner
+      padding: 0px 20px 60px
+    .tabs__container
+      overflow-x: scroll
+      padding-left: 20px
+    .picture__item
+        margin: 5px
+        width: 120px
+
+
 </style>

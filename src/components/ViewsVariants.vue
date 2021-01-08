@@ -86,4 +86,8 @@ export default {
                 fill: #202020;
             rect
                 fill: #202020;
+
+@media screen and (max-width: 1024px)
+  .views__variants
+    display: none
 </style>

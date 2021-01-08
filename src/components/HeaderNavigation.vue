@@ -142,7 +142,7 @@ export default {
   visibility: hidden;
   top: 0;
   left: -100%;
-  width: 300px;
+  width: 280px;
   height: 100%;
   margin: 0;
   padding: 80px 0;

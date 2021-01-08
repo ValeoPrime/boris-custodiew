@@ -25,7 +25,13 @@ export default {
   },
   computed: {
     paginationCount: function() {
-      return Math.ceil(this.data.length / this.offset);
+      console.log();
+      if(Math.ceil(this.data.length / this.offset) == 1) {
+        return null
+      } else {
+        return Math.ceil(this.data.length / this.offset);
+      }
+
     },
   },
   methods: {},
@@ -54,4 +60,9 @@ export default {
         margin-left: 16px
     .active
         color: #202020
+
+@media screen and (max-width: 768px)
+  .pagination__wraper
+    bottom: -10px
+
 </style>

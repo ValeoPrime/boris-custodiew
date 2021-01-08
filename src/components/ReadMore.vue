@@ -28,8 +28,8 @@ export default {};
             bottom: 0
             right: -10px
             height: 16px
-            width: 120px
+            width: calc( 100% + 10px )
             background-image: url('~@/assets/img/Arrowright-big.svg')
             background-repeat: no-repeat
-            background-position: center
+            background-position: center right
 </style>

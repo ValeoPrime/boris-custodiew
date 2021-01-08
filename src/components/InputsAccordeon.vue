@@ -112,7 +112,7 @@ export default {
       if (panel.classList.contains("panel--inner")) {
         panel.style.maxHeight = null;
       } else {
-        panel.style.maxHeight = panel.scrollHeight + 150 + "px";
+        panel.style.maxHeight = panel.scrollHeight + 550 + "px";
       }
     });
   },

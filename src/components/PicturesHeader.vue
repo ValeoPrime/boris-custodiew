@@ -6,20 +6,23 @@
         <h1 class="pictureHeader__title">картины</h1>
         <div class="author">бориса кустодиева</div>
       </div>
-      <div class="pictures__wrapper">
-        <div class="picture__container">
-          <img src="@/assets/img/picture1.png" alt="picture" />
-        </div>
-        <div class="picture__container">
-          <img src="@/assets/img/picture2.png" alt="picture" />
-        </div>
-        <div class="picture__container">
-          <img src="@/assets/img/picture3.png" alt="picture" />
-        </div>
-        <div class="picture__container">
-          <img src="@/assets/img/picture4.png" alt="picture" />
+      <div class="pictures__container">
+        <div class="pictures__wrapper">
+          <div class="picture__container">
+            <img src="@/assets/img/picture1.png" alt="picture" />
+          </div>
+          <div class="picture__container">
+            <img src="@/assets/img/picture2.png" alt="picture" />
+          </div>
+          <div class="picture__container">
+            <img src="@/assets/img/picture3.png" alt="picture" />
+          </div>
+          <div class="picture__container">
+            <img src="@/assets/img/picture4.png" alt="picture" />
+          </div>
         </div>
       </div>
+
       <a class="logo__icon" href="#" target="_blank"
         ><img src="@/assets/img/logo.svg" alt="logo"
       /></a>
@@ -81,8 +84,12 @@ export default {
     .picture__container
       width: 360px
       height: 258px
+      transition: all 1s
       img
         max-width: 100%
+        min-width: 100%
+        max-height: 100%
+        min-height: 100%
   .logo__icon
     position: absolute
     width: 60px
@@ -95,6 +102,15 @@ export default {
     flex-direction: column
     .pictureHeader__content
       height: 620px
+    .pictures__wrapper
+      justify-content: flex-start
+      .picture__container
+        width: 280px
+        height: 200px
+        margin-right: 20px
+  .logo__icon
+    display: none
+
 
 @media screen and (max-width: 768px)
   .pictureHeader
@@ -105,4 +121,23 @@ export default {
       padding-right: 20px
       .pictureHeader__title
         font-size: calc( (100vw - 320px)/(1280 - 320) * (80 - 40) + 40px);
+    .pictures__container
+      overflow-x: auto
+    .pictures__wrapper
+      min-width: 768px
+      margin-right: 1px
+      .picture__container
+          width: 190px
+          height: 160px
+@media screen and (max-width: 550px)
+  .pictureHeader
+    .pictureHeader__content
+      height: 550px
+    .title__wrapper
+      padding-left: 20px
+      flex-direction: column
+      margin-top: 120px
+      .author
+        padding-left: 0
+        margin-top: 20px
 </style>
