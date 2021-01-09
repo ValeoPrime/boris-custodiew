@@ -16,7 +16,7 @@ export default {};
         padding: 0 0
         outline: none
         background-color: transparent
-        font-family: Helvetica, sans-serif
+        font-family: Helvetica-Bold, sans-serif
         font-size: 14px
         line-height: 40px
         color: #202020
@@ -28,7 +28,7 @@ export default {};
             right: -10px
             height: 16px
             width: calc( 100% + 10px )
-            background-image: url('~@/assets/img/Arrowright-big.svg')
+            background-image: url('~@/assets/img/icons/Arrowright-big.svg')
             background-repeat: no-repeat
             background-position: center right
 </style>

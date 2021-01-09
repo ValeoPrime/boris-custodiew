@@ -39,7 +39,7 @@
     {
       "img": "./img/pic5.png",
       "name": "Трактирщик. Из серии \"Русские типы\"",
-      "work": "painting",
+      "work": "graphic",
       "plot": "architecture",
       "style": "modern",
       "technics": "watercolor",
@@ -48,7 +48,7 @@
     {
       "img": "./img/pic6.png",
       "name": "Портрет Степана Лукича Никольского",
-      "work": "painting",
+      "work": "graphic",
       "plot": "architecture",
       "style": "modern",
       "technics": "watercolor",
@@ -57,7 +57,7 @@
     {
       "img": "./img/pic7.png",
       "name": "Монахиня",
-      "work": "painting",
+      "work": "theatrical-decorative",
       "plot": "architecture",
       "style": "modern",
       "technics": "colorPencil",
@@ -66,7 +66,7 @@
     {
       "img": "./img/pic8.png",
       "name": "Портрет артистки Т.В. Чижовой",
-      "work": "painting",
+      "work": "drawings-illustrations",
       "plot": "historicalScene",
       "style": "modern",
       "technics": "gouache",
@@ -75,7 +75,7 @@
     {
       "img": "./img/pic9.png",
       "name": "Портрет А.Н. Протасовой",
-      "work": "painting",
+      "work": "drawings-illustrations",
       "plot": "architecture",
       "style": "modern",
       "technics": "graphitePencil",
@@ -84,7 +84,7 @@
     {
       "img": "./img/pic10.png",
       "name": "На терассе",
-      "work": "painting",
+      "work": "drawings-illustrations",
       "plot": "historicalScene",
       "style": "modern",
       "technics": "graphitePencil",
@@ -93,7 +93,7 @@
     {
       "img": "./img/pic1.png",
       "name": "Сундучник. Из серии \"Русские типы\"",
-      "work": "painting",
+      "work": "drawings-illustrations",
       "plot": "animalism",
       "style": "modern",
       "technics": "graphitePencil",
@@ -102,7 +102,7 @@
     {
       "img": "./img/pic2.png",
       "name": "Булочник. Из серии \"Русские типы\"",
-      "work": "painting",
+      "work": "theatrical-decorative",
       "plot": "historicalScene",
       "style": "modern",
       "technics": "graphitePencil",
@@ -111,7 +111,7 @@
     {
       "img": "./img/pic3.png",
       "name": "Купец с купчихой",
-      "work": "painting",
+      "work": "theatrical-decorative",
       "plot": "animalism",
       "style": "modern",
       "technics": "graphitePencil",
@@ -120,7 +120,7 @@
     {
       "img": "./img/pic4.png",
       "name": "Пасхальный обряд (Христосование)",
-      "work": "painting",
+      "work": "theatrical-decorative",
       "plot": "historicalScene",
       "style": "impressionism",
       "technics": "gouache",
@@ -129,7 +129,7 @@
     {
       "img": "./img/pic5.png",
       "name": "Трактирщик. Из серии \"Русские типы\"",
-      "work": "painting",
+      "work": "theatrical-decorative",
       "plot": "animalism",
       "style": "impressionism",
       "technics": "gouache",
@@ -138,7 +138,7 @@
     {
       "img": "./img/pic6.png",
       "name": "Портрет Степана Лукича Никольского",
-      "work": "painting",
+      "work": "theatrical-decorative",
       "plot": "allegoricalScene",
       "style": "impressionism",
       "technics": "gouache",
@@ -147,7 +147,7 @@
     {
       "img": "./img/pic7.png",
       "name": "Монахиня",
-      "work": "painting",
+      "work": "theatrical-decorative",
       "plot": "allegoricalScene",
       "style": "impressionism",
       "technics": "gouache",
@@ -156,7 +156,7 @@
     {
       "img": "./img/pic8.png",
       "name": "Портрет артистки Т.В. Чижовой",
-      "work": "painting",
+      "work": "graphic",
       "plot": "religiousScene",
       "style": "impressionism",
       "technics": "gouache",
@@ -165,7 +165,7 @@
     {
       "img": "./img/pic9.png",
       "name": "Портрет А.Н. Протасовой",
-      "work": "painting",
+      "work": "poster",
       "plot": "religiousScene",
       "style": "impressionism",
       "technics": "gouache",
@@ -174,7 +174,7 @@
     {
       "img": "./img/pic10.png",
       "name": "На терассе",
-      "work": "painting",
+      "work": "engraving",
       "plot": "religiousScene",
       "style": "impressionism",
       "technics": "gouache",
@@ -183,7 +183,7 @@
     {
       "img": "./img/pic1.png",
       "name": "Сундучник. Из серии \"Русские типы\"",
-      "work": "painting",
+      "work": "engraving",
       "plot": "religiousScene",
       "style": "realism",
       "technics": "pastel",
@@ -192,7 +192,7 @@
     {
       "img": "./img/pic2.png",
       "name": "Булочник. Из серии \"Русские типы\"",
-      "work": "painting",
+      "work": "engraving",
       "plot": "allegoricalScene",
       "style": "realism",
       "technics": "pastel",
@@ -201,7 +201,7 @@
     {
       "img": "./img/pic3.png",
       "name": "Купец с купчихой",
-      "work": "painting",
+      "work": "poster",
       "plot": "stillLife",
       "style": "realism",
       "technics": "pastel",
@@ -210,7 +210,7 @@
     {
       "img": "./img/pic4.png",
       "name": "Пасхальный обряд (Христосование)",
-      "work": "painting",
+      "work": "poster",
       "plot": "stillLife",
       "style": "socialistRealism",
       "technics": "pastel",
@@ -219,7 +219,7 @@
     {
       "img": "./img/pic5.png",
       "name": "Трактирщик. Из серии \"Русские типы\"",
-      "work": "painting",
+      "work": "poster",
       "plot": "stillLife",
       "style": "socialistRealism",
       "technics": "pastel",
@@ -237,7 +237,7 @@
     {
       "img": "./img/pic7.png",
       "name": "Монахиня",
-      "work": "painting",
+      "work": "sculpture",
       "plot": "Interior",
       "style": "realism",
       "technics": "mascara",
@@ -246,7 +246,7 @@
     {
       "img": "./img/pic8.png",
       "name": "Портрет артистки Т.В. Чижовой",
-      "work": "painting",
+      "work": "sculpture",
       "plot": "urbanLandscape",
       "style": "realism",
       "technics": "mascara",
@@ -273,7 +273,7 @@
     {
       "img": "./img/pic1.png",
       "name": "Сундучник. Из серии \"Русские типы\"",
-      "work": "painting",
+      "work": "decorative",
       "plot": "nude",
       "style": "artNouveau",
       "technics": "graphite",
@@ -282,7 +282,7 @@
     {
       "img": "./img/pic2.png",
       "name": "Булочник. Из серии \"Русские типы\"",
-      "work": "painting",
+      "work": "decorative",
       "plot": "nude",
       "style": "primitivism",
       "technics": "graphite",
@@ -291,7 +291,7 @@
     {
       "img": "./img/pic3.png",
       "name": "Купец с купчихой",
-      "work": "painting",
+      "work": "decorative",
       "plot": "urbanLandscape",
       "style": "primitivism",
       "technics": "graphite",
@@ -300,7 +300,7 @@
     {
       "img": "./img/pic4.png",
       "name": "Пасхальный обряд (Христосование)",
-      "work": "painting",
+      "work": "decorative",
       "plot": "urbanLandscape",
       "style": "primitivism",
       "technics": "graphite",

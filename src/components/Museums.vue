@@ -47,7 +47,7 @@ export default {
           },
           {
             iconLayout: "default#image",
-            iconImageHref: "./img/MapMarker.svg",
+            iconImageHref: "./img/icons/MapMarker.svg",
             iconImageSize: [30, 40],
           }
         );
@@ -83,7 +83,7 @@ export default {
 .museum__adress + .museum__adress
     border-left: 1px solid #E5E5E5;
 .museum__title
-    font-family: Helvetica, sans-serif
+    font-family: Helvetica-Bold, sans-serif
     font-size: 16px;
     line-height: 26px;
     color: #202020;
@@ -96,7 +96,7 @@ export default {
         left: 0
         width: 14px
         height: 18px
-        background-image: url("~@/assets/img/AdressMarker--Min.svg")
+        background-image: url("~@/assets/img/icons/AdressMarker--Min.svg")
 .musseum__adress__descr
     font-family: Helvetica;
     font-size: 14px;

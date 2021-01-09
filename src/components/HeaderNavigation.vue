@@ -4,7 +4,7 @@
       <input class="search" type="text" />
       <img
         v-on:click="searchHandler"
-        src="@/assets/img/serch-icon.svg"
+        src="@/assets/img/icons/serch-icon.svg"
         alt="serch"
         class="search__icon"
       />

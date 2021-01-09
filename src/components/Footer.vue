@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import SocialButtonLight from "@/components/SocialButtonLight.vue";
+import SocialButtonLight from "@/components/reusableComponents/SocialButtonLight.vue";
 
 export default {
   components: {

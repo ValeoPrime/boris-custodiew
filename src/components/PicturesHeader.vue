@@ -24,7 +24,7 @@
       </div>
 
       <a class="logo__icon" href="#" target="_blank"
-        ><img src="@/assets/img/logo.svg" alt="logo"
+        ><img src="@/assets/img/icons/logo.svg" alt="logo"
       /></a>
     </div>
   </section>
@@ -71,7 +71,7 @@ export default {
     margin-top: 180px
     .author
       width: 240px
-      font-family: Helvetica,sans-serif
+      font-family: Helvetica-Light,sans-serif
       font-size: 40px;
       line-height: 50px;
       padding-left: 32px

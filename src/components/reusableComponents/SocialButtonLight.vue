@@ -19,7 +19,8 @@ export default {
           limit: 3,
           size: "m",
           bare: false,
-          direction: "horizontal"
+          direction: "horizontal",
+          useLinks: true
         },
       });
     },
@@ -44,11 +45,11 @@ export default {
     background-repeat: no-repeat
     background-position: center
   .ya-share2__item_service_vkontakte .ya-share2__icon
-    background-image: url('~@/assets/img/VK-light.svg')
+    background-image: url('~@/assets/img/icons/VK-light.svg')
   .ya-share2__item_service_facebook .ya-share2__icon
-    background-image: url('~@/assets/img/Tvit-light.svg')
+    background-image: url('~@/assets/img/icons/Tvit-light.svg')
   .ya-share2__item_service_twitter .ya-share2__icon
-    background-image: url('~@/assets/img/FB-light.svg')
+    background-image: url('~@/assets/img/icons/FB-light.svg')
 
   .ya-share2__badge
       background-color: transparent

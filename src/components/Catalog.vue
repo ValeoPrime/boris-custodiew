@@ -39,25 +39,29 @@
       <div class="catalog__inner">
         <div v-on:click="showFilters" class="filters__mobile">Фильтры</div>
         <div class="catalog__filters">
-          <TextAccordion v-bind:works="works" />
+          <TextAccordion
+            v-bind:works="works"
+            v-on:addFilter="filterHandler"
+            :key="currentTab"
+          />
           <InputsAccordeon
             v-on:quickSearch="quickSearch"
-            v-on:inputChange="checkboxHandler"
+            v-on:inputChange="filterHandler"
             v-bind:data="plots"
           />
           <InputsAccordeon
             v-on:quickSearch="quickSearch"
-            v-on:inputChange="checkboxHandler"
+            v-on:inputChange="filterHandler"
             v-bind:data="styles"
           />
           <InputsAccordeon
             v-on:quickSearch="quickSearch"
-            v-on:inputChange="checkboxHandler"
+            v-on:inputChange="filterHandler"
             v-bind:data="technics"
           />
           <InputsAccordeon
             v-on:rangeSearch="rangeSearch"
-            v-on:inputChange="checkboxHandler"
+            v-on:inputChange="filterHandler"
             v-bind:data="period"
           />
         </div>
@@ -108,21 +112,12 @@
 </template>
 
 <script>
-import ViewsVariants from "@/components/ViewsVariants.vue";
-import TextAccordion from "@/components/TextAccordion.vue";
-import InputsAccordeon from "@/components/InputsAccordeon.vue";
-import Pagination from "@/components/Pagination.vue";
+import ViewsVariants from "@/components/reusableComponents/ViewsVariants.vue";
+import TextAccordion from "@/components/reusableComponents/TextAccordion.vue";
+import InputsAccordeon from "@/components/reusableComponents/InputsAccordeon.vue";
+import Pagination from "@/components/reusableComponents/Pagination.vue";
+import { fetchData, grid, table, filterPictures } from "@/helpers.js";
 
-async function fetchData(path) {
-  const result = await fetch(`./data/${path}.json`)
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      return data.pictures;
-    });
-  return result;
-}
 export default {
   components: {
     ViewsVariants,
@@ -136,18 +131,26 @@ export default {
       this.filteredPictures = this.pictures[this.currentTab];
       this.paginationHandler(1);
     } else {
-      this.filteredPictures = this.filterPictures(this.filterTags);
+      this.filteredPictures = filterPictures(
+        this.filterTags,
+        this.pictures[this.currentTab]
+      );
       this.paginationHandler(1);
     }
+
+    // Подсчет картин по видам исполнения
+    this.works.worksArr.forEach((work) => {
+      work.worksCount = this.pictures[this.currentTab].filter((picture) =>picture.work == work.work).length;
+    });
   },
   data() {
     return {
-      currentTab:'rarity',
+      currentTab: "rarity",
       pictures: {
-        rarity:[],
-        new:[],
-        antiques:[],
-        philately:[]
+        rarity: [],
+        new: [],
+        antiques: [],
+        philately: [],
       },
       offset: 10,
       filteredPictures: [],
@@ -162,49 +165,49 @@ export default {
           {
             id: "painting ",
             work: "painting",
-            workStyle: "Живопись",
+            plotStyle: "Живопись",
             worksCount: 383,
           },
           {
             id: "drawings-illustrations",
             work: "drawings-illustrations",
-            workStyle: "Рисунки и иллюстрации",
+            plotStyle: "Рисунки и иллюстрации",
             worksCount: 110,
           },
           {
             id: "theatrical-decorative",
             work: "theatrical-decorative",
-            workStyle: "Театрально-декорационное",
+            plotStyle: "Театрально-декорационное",
             worksCount: 22,
           },
           {
             id: "graphic",
             work: "graphic",
-            workStyle: "Графика",
+            plotStyle: "Графика",
             worksCount: 22,
           },
           {
             id: "engraving",
             work: "engraving",
-            workStyle: "Гравюра",
+            plotStyle: "Гравюра",
             worksCount: 10,
           },
           {
             id: "poster",
             work: "poster",
-            workStyle: "Плакат",
+            plotStyle: "Плакат",
             worksCount: 9,
           },
           {
             id: "sculpture",
             work: "sculpture",
-            workStyle: "Скульптура",
+            plotStyle: "Скульптура",
             worksCount: 5,
           },
           {
             id: "decorative",
             work: "decorative",
-            workStyle: "Декоративно-прикладное",
+            plotStyle: "Декоративно-прикладное",
             worksCount: 2,
           },
         ],
@@ -466,117 +469,94 @@ export default {
     };
   },
   methods: {
-
     tabsHandler: async function(e) {
       const allTabs = document.querySelectorAll(".catalog__tab__item");
       allTabs.forEach((tab) => {
         tab.classList.remove("active__tab");
       });
       e.target.classList.add("active__tab");
-      if(this.pictures[e.target.id].length){
-        this.currentTab = e.target.id
+      if (this.pictures[e.target.id].length) {
+        this.currentTab = e.target.id;
+        // Подсчет картин по видам исполнения
+        this.works.worksArr.forEach((work) => {
+          work.worksCount = this.pictures[this.currentTab].filter(
+            (picture) => picture.work == work.work
+          ).length;
+        });
+        this.paginationHandler(1);
       } else {
-        this.currentTab = e.target.id
+        this.currentTab = e.target.id;
         this.pictures[this.currentTab] = await fetchData(e.target.id);
+        this.paginationHandler(1);
+        // Подсчет картин по видам исполнения
+        this.works.worksArr.forEach((work) => {
+          work.worksCount = this.pictures[this.currentTab].filter(
+            (picture) => picture.work == work.work
+          ).length;
+        });
       }
     },
 
     viewsHandler: function(id) {
-      console.log("viewHandler", id);
-      if (this.showVariant == id) {
-        return;
-      } else {
-        this.changeViews(id);
-      }
+      this.showVariant == id ? null : this.changeViews(id);
     },
+
     changeViews: function(id) {
       const catalogFilters = document.querySelector(".catalog__filters");
       const pictures = document.querySelectorAll(".picture__item");
 
-      if (id == "grid") {
-        catalogFilters.style.paddingRight = 40 + "px";
-        catalogFilters.style.minWidth = 225 + "px";
-        catalogFilters.style.maxWidth = 200 + "px";
-        pictures.forEach((picture) => {
-          picture.style.width = 200 + "px";
-        });
-
-      } else {
-        catalogFilters.style.paddingRight = 118 + "px";
-        catalogFilters.style.minWidth = 318 + "px";
-        catalogFilters.style.maxWidth = 318 + "px";
-        pictures.forEach((picture) => {
-          picture.style.width = 280 + "px";
-        });
-      }
+      id == "grid"
+        ? grid(catalogFilters, pictures)
+        : table(catalogFilters, pictures);
       this.showVariant = id;
     },
 
-    showFilters: function(){
-      const filter = document.querySelector('.catalog__filters')
-      filter.classList.toggle('filters__show')
+    showFilters: function() {
+      const filter = document.querySelector(".catalog__filters");
+      filter.classList.toggle("filters__show");
     },
 
-    checkboxHandler: function(item) {
-      if (item.checked) {
-        this.filterTags.push(item);
-        this.filteredPictures = this.filterPictures(this.filterTags);
+    filterHandler: function(item) {
+      if (this.filterTags.filter((tag) => tag.id == item.id).length > 0) {
+        this.filterTags = this.filterTags.filter((tag) => tag.id !== item.id);
+        this.filteredPictures = filterPictures(
+          this.filterTags,
+          this.pictures[this.currentTab]
+        );
+
         this.paginationHandler(1);
       } else {
-        this.filterTags = this.filterTags.filter((tag) => tag.id !== item.id);
-        this.filteredPictures = this.filterPictures(this.filterTags);
+        this.filterTags.push(item);
+        this.filteredPictures = filterPictures(
+          this.filterTags,
+          this.pictures[this.currentTab]
+        );
+
         this.paginationHandler(1);
       }
     },
 
     removeTag: function(item) {
       this.filterTags = this.filterTags.filter((tag) => tag.id !== item.id);
-      this.filteredPictures = this.filterPictures(this.filterTags);
+      this.filteredPictures = filterPictures(
+        this.filterTags,
+        this.pictures[this.currentTab]
+      );
       this.paginationHandler(1);
     },
 
-    filterPictures: function(filterTags) {
-      console.log(filterTags, this.currentTab);
-      const pictures = this.pictures[this.currentTab]
-      let result = [];
-      filterTags.forEach((filter) => {
-        if (filter.plot) {
-          result = result.concat(pictures.filter((pic) => pic.plot == filter.plot)) ;
-        }
-        if (filter.style) {
-          result = result.concat(pictures.filter((pic) => pic.style == filter.style)) ;
-        }
-        if (filter.technics) {
-          result = result.concat(pictures.filter((pic) => pic.technics == filter.technics)) ;
-        }
-        if (filter.year) {
-          switch (filter.year) {
-            case "period 1":
-              result = result.concat(pictures.filter((pic) => pic.year <= 1900)) ;
-            case "period 2":
-              result = result.concat(pictures.filter(
-                (pic) => pic.year > 1901 && pic.year < 1916
-              ))
-            case "period 3":
-              result = result.concat(pictures.filter((pic) => pic.year >= 1917))
-          }
-        }
-      });
-      return result;
-    },
     paginationHandler: function(id) {
       this.showPictures = this.filteredPictures.slice(
         id * this.offset - this.offset,
         id * this.offset
       );
       this.curentPaginationItem = id;
-      console.log("this.showPictures", this.showPictures);
     },
     quickSearch: function(value) {
-      console.log(value);
+      // console.log(value);
     },
     rangeSearch: function(value, id) {
-      console.log(value, id);
+      // console.log(value, id);
     },
   },
 };
@@ -629,7 +609,7 @@ export default {
             right: 10px
             width: 17px
             height: 17px
-            background-image: url('~@/assets/img/filtersMobile.svg')
+            background-image: url('~@/assets/img/icons/filtersMobile.svg')
     .catalog__filters
         min-width: 318px
         max-width: 318px
@@ -760,6 +740,4 @@ export default {
     .picture__item
         margin: 5px
         width: 120px
-
-
 </style>

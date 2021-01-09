@@ -21,7 +21,7 @@
     {
       "img": "./img/pic3.png",
       "name": "Купец с купчихой",
-      "work": "painting",
+      "work": "sculpture",
       "plot": "religiousScene",
       "style": "socialistRealism",
       "technics": "watercolor",
@@ -30,7 +30,7 @@
     {
       "img": "./img/pic4.png",
       "name": "Пасхальный обряд (Христосование)",
-      "work": "painting",
+      "work": "sculpture",
       "plot": "architecture",
       "style": "modern",
       "technics": "watercolor",
@@ -39,7 +39,7 @@
     {
       "img": "./img/pic5.png",
       "name": "Трактирщик. Из серии \"Русские типы\"",
-      "work": "painting",
+      "work": "poster",
       "plot": "architecture",
       "style": "modern",
       "technics": "watercolor",
@@ -48,7 +48,7 @@
     {
       "img": "./img/pic6.png",
       "name": "Портрет Степана Лукича Никольского",
-      "work": "painting",
+      "work": "drawings-illustrations",
       "plot": "historicalScene",
       "style": "modern",
       "technics": "watercolor",
@@ -57,7 +57,7 @@
     {
       "img": "./img/pic7.png",
       "name": "Монахиня",
-      "work": "painting",
+      "work": "drawings-illustrations",
       "plot": "architecture",
       "style": "modern",
       "technics": "watercolor",
@@ -66,7 +66,7 @@
     {
       "img": "./img/pic8.png",
       "name": "Портрет артистки Т.В. Чижовой",
-      "work": "painting",
+      "work": "drawings-illustrations",
       "plot": "animalism",
       "style": "modern",
       "technics": "pastel",
@@ -75,7 +75,7 @@
     {
       "img": "./img/pic9.png",
       "name": "Портрет А.Н. Протасовой",
-      "work": "painting",
+      "work": "drawings-illustrations",
       "plot": "animalism",
       "style": "modern",
       "technics": "gouache",
@@ -84,7 +84,7 @@
     {
       "img": "./img/pic10.png",
       "name": "На терассе",
-      "work": "painting",
+      "work": "drawings-illustrations",
       "plot": "historicalScene",
       "style": "impressionism",
       "technics": "graphitePencil",
@@ -93,7 +93,7 @@
     {
       "img": "./img/pic1.png",
       "name": "Сундучник. Из серии \"Русские типы\"",
-      "work": "painting",
+      "work": "drawings-illustrations",
       "plot": "animalism",
       "style": "impressionism",
       "technics": "graphitePencil",
@@ -102,7 +102,7 @@
     {
       "img": "./img/pic2.png",
       "name": "Булочник. Из серии \"Русские типы\"",
-      "work": "painting",
+      "work": "graphic",
       "plot": "animalism",
       "style": "impressionism",
       "technics": "graphitePencil",
@@ -111,7 +111,7 @@
     {
       "img": "./img/pic3.png",
       "name": "Купец с купчихой",
-      "work": "painting",
+      "work": "theatrical-decorative",
       "plot": "religiousScene",
       "style": "impressionism",
       "technics": "graphitePencil",
@@ -120,7 +120,7 @@
     {
       "img": "./img/pic4.png",
       "name": "Пасхальный обряд (Христосование)",
-      "work": "painting",
+      "work": "theatrical-decorative",
       "plot": "allegoricalScene",
       "style": "impressionism",
       "technics": "graphitePencil",
@@ -129,7 +129,7 @@
     {
       "img": "./img/pic5.png",
       "name": "Трактирщик. Из серии \"Русские типы\"",
-      "work": "painting",
+      "work": "theatrical-decorative",
       "plot": "allegoricalScene",
       "style": "impressionism",
       "technics": "gouache",
@@ -138,7 +138,7 @@
     {
       "img": "./img/pic6.png",
       "name": "Портрет Степана Лукича Никольского",
-      "work": "painting",
+      "work": "theatrical-decorative",
       "plot": "allegoricalScene",
       "style": "impressionism",
       "technics": "gouache",
@@ -147,7 +147,7 @@
     {
       "img": "./img/pic7.png",
       "name": "Монахиня",
-      "work": "painting",
+      "work": "theatrical-decorative",
       "plot": "urbanLandscape",
       "style": "impressionism",
       "technics": "gouache",
@@ -156,7 +156,7 @@
     {
       "img": "./img/pic8.png",
       "name": "Портрет артистки Т.В. Чижовой",
-      "work": "painting",
+      "work": "theatrical-decorative",
       "plot": "nude",
       "style": "impressionism",
       "technics": "gouache",
@@ -165,7 +165,7 @@
     {
       "img": "./img/pic9.png",
       "name": "Портрет А.Н. Протасовой",
-      "work": "painting",
+      "work": "theatrical-decorative",
       "plot": "Interior",
       "style": "realism",
       "technics": "gouache",
@@ -174,7 +174,7 @@
     {
       "img": "./img/pic10.png",
       "name": "На терассе",
-      "work": "painting",
+      "work": "theatrical-decorative",
       "plot": "stillLife",
       "style": "primitivism",
       "technics": "pastel",
@@ -183,7 +183,7 @@
     {
       "img": "./img/pic1.png",
       "name": "Сундучник. Из серии \"Русские типы\"",
-      "work": "painting",
+      "work": "graphic",
       "plot": "stillLife",
       "style": "primitivism",
       "technics": "pastel",
@@ -192,7 +192,7 @@
     {
       "img": "./img/pic2.png",
       "name": "Булочник. Из серии \"Русские типы\"",
-      "work": "painting",
+      "work": "graphic",
       "plot": "stillLife",
       "style": "primitivism",
       "technics": "pastel",
@@ -201,7 +201,7 @@
     {
       "img": "./img/pic3.png",
       "name": "Купец с купчихой",
-      "work": "painting",
+      "work": "poster",
       "plot": "stillLife",
       "style": "primitivism",
       "technics": "pastel",
@@ -210,7 +210,7 @@
     {
       "img": "./img/pic4.png",
       "name": "Пасхальный обряд (Христосование)",
-      "work": "painting",
+      "work": "engraving",
       "plot": "Interior",
       "style": "primitivism",
       "technics": "colorPencil",
@@ -219,7 +219,7 @@
     {
       "img": "./img/pic5.png",
       "name": "Трактирщик. Из серии \"Русские типы\"",
-      "work": "painting",
+      "work": "engraving",
       "plot": "Interior",
       "style": "socialistRealism",
       "technics": "mascara",
@@ -228,7 +228,7 @@
     {
       "img": "./img/pic6.png",
       "name": "Портрет Степана Лукича Никольского",
-      "work": "painting",
+      "work": "poster",
       "plot": "nude",
       "style": "realism",
       "technics": "mascara",
@@ -237,7 +237,7 @@
     {
       "img": "./img/pic7.png",
       "name": "Монахиня",
-      "work": "painting",
+      "work": "poster",
       "plot": "nude",
       "style": "socialistRealism",
       "technics": "mascara",
@@ -282,7 +282,7 @@
     {
       "img": "./img/pic2.png",
       "name": "Булочник. Из серии \"Русские типы\"",
-      "work": "painting",
+      "work": "decorative",
       "plot": "literaryScene",
       "style": "artNouveau",
       "technics": "graphite",
@@ -291,7 +291,7 @@
     {
       "img": "./img/pic3.png",
       "name": "Купец с купчихой",
-      "work": "painting",
+      "work": "decorative",
       "plot": "literaryScene",
       "style": "artNouveau",
       "technics": "graphite",
@@ -300,7 +300,7 @@
     {
       "img": "./img/pic4.png",
       "name": "Пасхальный обряд (Христосование)",
-      "work": "painting",
+      "work": "decorative",
       "plot": "scenery",
       "style": "artNouveau",
       "technics": "graphite",
@@ -309,7 +309,7 @@
     {
       "img": "./img/pic5.png",
       "name": "Трактирщик. Из серии \"Русские типы\"",
-      "work": "painting",
+      "work": "decorative",
       "plot": "scenery",
       "style": "realism",
       "technics": "graphite",
@@ -566,6 +566,114 @@
       "style": "realism",
       "technics": "oil",
       "year": "1916"
+    },
+    {
+      "img": "./img/pic5.png",
+      "name": "Трактирщик. Из серии \"Русские типы\"",
+      "work": "painting",
+      "plot": "portrait",
+      "style": "realism",
+      "technics": "oil",
+      "year": "1920"
+    },
+    {
+      "img": "./img/pic6.png",
+      "name": "Портрет Степана Лукича Никольского",
+      "work": "painting",
+      "plot": "portrait",
+      "style": "realism",
+      "technics": "oil",
+      "year": "1901"
+    },
+    {
+      "img": "./img/pic7.png",
+      "name": "Монахиня",
+      "work": "painting",
+      "plot": "portrait",
+      "style": "realism",
+      "technics": "oil",
+      "year": "1901"
+    },
+    {
+      "img": "./img/pic8.png",
+      "name": "Портрет артистки Т.В. Чижовой",
+      "work": "painting",
+      "plot": "portrait",
+      "style": "realism",
+      "technics": "oil",
+      "year": "1924"
+    },
+    {
+      "img": "./img/pic9.png",
+      "name": "Портрет А.Н. Протасовой",
+      "work": "painting",
+      "plot": "portrait",
+      "style": "realism",
+      "technics": "oil",
+      "year": "1900"
+    },
+    {
+      "img": "./img/pic10.png",
+      "name": "На терассе",
+      "work": "painting",
+      "plot": "portrait",
+      "style": "realism",
+      "technics": "oil",
+      "year": "1906"
+    },
+    {
+      "img": "./img/pic5.png",
+      "name": "Трактирщик. Из серии \"Русские типы\"",
+      "work": "painting",
+      "plot": "portrait",
+      "style": "realism",
+      "technics": "oil",
+      "year": "1920"
+    },
+    {
+      "img": "./img/pic6.png",
+      "name": "Портрет Степана Лукича Никольского",
+      "work": "painting",
+      "plot": "portrait",
+      "style": "realism",
+      "technics": "oil",
+      "year": "1901"
+    },
+    {
+      "img": "./img/pic7.png",
+      "name": "Монахиня",
+      "work": "painting",
+      "plot": "portrait",
+      "style": "realism",
+      "technics": "oil",
+      "year": "1901"
+    },
+    {
+      "img": "./img/pic8.png",
+      "name": "Портрет артистки Т.В. Чижовой",
+      "work": "painting",
+      "plot": "portrait",
+      "style": "realism",
+      "technics": "oil",
+      "year": "1924"
+    },
+    {
+      "img": "./img/pic9.png",
+      "name": "Портрет А.Н. Протасовой",
+      "work": "painting",
+      "plot": "portrait",
+      "style": "realism",
+      "technics": "oil",
+      "year": "1900"
+    },
+    {
+      "img": "./img/pic10.png",
+      "name": "На терассе",
+      "work": "painting",
+      "plot": "portrait",
+      "style": "realism",
+      "technics": "oil",
+      "year": "1906"
     },
     {
       "img": "./img/pic5.png",

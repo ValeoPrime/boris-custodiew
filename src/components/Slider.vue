@@ -50,7 +50,12 @@
               />
             </svg>
           </div>
-          <h3 class="slider__title">{{ sliderList[sliderActive - 1].name }}</h3>
+          <div class="slider__title__wrapper">
+            <h3 class="slider__title">
+              {{ sliderList[sliderActive - 1].name }}
+            </h3>
+          </div>
+
           <div class="slider__count">
             {{ sliderActive }} <span>/ {{ sliderList.length }}</span>
           </div>
@@ -74,10 +79,10 @@
             </svg>
           </div>
         </div>
-        <router-link class="allPictures allPictures--ful" to="/Pictures"
+        <router-link class="allPictures allPictures--ful" to="/pictures"
           ><span>все картины</span></router-link
         >
-        <router-link class="allPictures allPictures--mob" to="/Pictures"
+        <router-link class="allPictures allPictures--mob" to="/pictures"
           ><span>все картины</span></router-link
         >
       </div>
@@ -114,23 +119,11 @@ export default {
       this.sliderAllCount = this.sliderList.length;
 
       const carousel = document.querySelector(".carousel");
-      let startMousePos = 0;
+
       let startTouchPos = 0;
       let endTouchPos = 0;
 
-      carousel.addEventListener(
-        "mousedown",
-        (e) => (startMousePos = e.clientX)
-      );
-
-      carousel.addEventListener("mouseup", (e) => {
-        if (startMousePos - e.clientX > 30) {
-          this.nextSlide(e);
-        }
-        if (startMousePos - e.clientX < -30) {
-          this.prevSlide(e);
-        }
-      });
+      //swipe
 
       carousel.addEventListener(
         "touchstart",
@@ -197,7 +190,6 @@ export default {
         return response.json();
       })
       .then((data) => {
-        console.log(data.pictures);
         return data.pictures;
       });
     this.initSlider();
@@ -299,7 +291,7 @@ export default {
   background-size: cover;
   background-position: center;
   flex: 1 100%;
-  // animation: bounce-in .5s;
+
 
 
 
@@ -307,7 +299,7 @@ export default {
     position: relative
     color: #F5F5F5;
     padding: 20px 0 40px
-    font-family: Helvetica, sans-serif
+    font-family: Helvetica-Light, sans-serif
     font-size: 14px;
     line-height: 20px;
     width: 100%
@@ -333,10 +325,10 @@ export default {
         right: 0;
 
 .fade-enter-active
-  animation: bounce-on 2s ease-in;
+  animation: bounce-on 1s ease-in;
 
 .fade-leave-active
-  animation: bounce-in 1s ease-in;
+  animation: bounce-in .5s ease-in;
 
 @keyframes bounce-in
   0%
@@ -377,12 +369,15 @@ export default {
   .carousel__arrows__wrap
     position: static
     padding: 0
-    .slider__title
+    .slider__title__wrapper
       position: absolute
       top: 60px
       left: calc( 50% - 150px )
+      width: 300px
+    .slider__title
+      text-align: center
     .slider__count
-      margin-top: 0px
+      margin-top: 20px
   .allPictures--ful
     display: none
   .allPictures--mob
@@ -399,12 +394,11 @@ export default {
     height: 300px
 @media screen and (max-width: 550px)
   .carousel
-    padding: 100px 0
+    padding: 100px 20px
   .carousel__item
     width: 200px
     height: 156px
   .carousel__inner
-    overflow-x: scroll
     height: 200px
   .carousel__item + .carousel__item
     margin-left: 20px

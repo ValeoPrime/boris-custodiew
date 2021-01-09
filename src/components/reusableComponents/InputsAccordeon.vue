@@ -138,8 +138,7 @@ export default {
     padding:  0 0 10px 0
     background-color: inherit
     outline: none;
-    font-family: Helvetica,sans-serif
-    font-weight: bold
+    font-family: Helvetica-Bold,sans-serif
     font-size: 12px;
     line-height: 14px;
     color: #202020;
@@ -210,7 +209,7 @@ export default {
 
     /* стили для чекбокса, находящегося в состоянии checked */
     .custom-checkbox>input:checked+span::before
-      background-image: url("~@/assets/img/checked.svg");
+      background-image: url("~@/assets/img/icons/checked.svg");
 
 
 .filter__item

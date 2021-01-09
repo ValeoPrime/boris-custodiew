@@ -19,7 +19,7 @@ export default {
           limit: 3,
           size: "m",
           bare: false,
-          direction: "horizontal",
+          direction: "horizontal"
         },
       });
     },
@@ -45,11 +45,11 @@ export default {
     background-repeat: no-repeat
     background-position: center
   .ya-share2__item_service_vkontakte .ya-share2__icon
-    background-image: url('~@/assets/img/VK.svg')
+    background-image: url('~@/assets/img/icons/VK.svg')
   .ya-share2__item_service_facebook .ya-share2__icon
-    background-image: url('~@/assets/img/Twit.svg')
+    background-image: url('~@/assets/img/icons/Twit.svg')
   .ya-share2__item_service_twitter .ya-share2__icon
-    background-image: url('~@/assets/img/Fb.svg')
+    background-image: url('~@/assets/img/icons/Fb.svg')
   .ya-share2__list.ya-share2__list_direction_horizontal > .ya-share2__item
     border: 0.65px solid #BFBFBF;
 

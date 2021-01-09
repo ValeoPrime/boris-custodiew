@@ -28,7 +28,7 @@
         </p>
       </div>
       <a class="logo__icon" href="#" target="_blank"
-        ><img src="@/assets/img/logo.svg" alt="logo"
+        ><img src="@/assets/img/icons/logo.svg" alt="logo"
       /></a>
     </div>
   </section>
@@ -88,7 +88,7 @@ export default {
       line-height: 100%
     .header__description
       margin-top: 30px
-      font-family: Helvetica, sans-serif
+      font-family: Helvetica-Light, sans-serif
       font-size: 16px
       line-height: 29px
   .logo__icon

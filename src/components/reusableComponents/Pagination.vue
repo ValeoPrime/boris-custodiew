@@ -25,7 +25,6 @@ export default {
   },
   computed: {
     paginationCount: function() {
-      console.log();
       if(Math.ceil(this.data.length / this.offset) == 1) {
         return null
       } else {

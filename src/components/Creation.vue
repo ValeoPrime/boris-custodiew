@@ -56,8 +56,8 @@
 </template>
 
 <script>
-import SocialButtons from "@/components/SocialButtons.vue";
-import ReadMore from "@/components/ReadMore.vue";
+import SocialButtons from "@/components/reusableComponents/SocialButtons.vue";
+import ReadMore from "@/components/reusableComponents/ReadMore.vue";
 export default {
   components: {
     SocialButtons,
