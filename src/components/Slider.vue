@@ -21,7 +21,7 @@
             <transition name="fade">
               <img
                 class="carousel__item"
-                v-if="sliderList[sliderActive]"
+
                 :src="sliderList[sliderActive - 1].img"
                 :key="sliderActive"
                 alt="image"
@@ -172,7 +172,7 @@ export default {
     prevSlide: function() {
       if (this.sliderActive > 1) {
         this.sliderActive -= 1;
-
+this.openSlide(this.sliderActive);
         this.disableSwitch = false;
         this.disableRightSwitch ? (this.disableRightSwitch = false) : null;
         if (this.sliderActive == 1) {
