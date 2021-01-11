@@ -1,5 +1,5 @@
 <template>
-  <section class="catalog">
+  <section class="catalog" >
     <div class="container">
       <div class="tabs__container">
         <div class="catalog__tabs">
@@ -65,7 +65,7 @@
             v-bind:data="period"
           />
         </div>
-        <div class="catalog__galery">
+        <div class="catalog__galery" v-cloak>
           <div class="tags__wrapper">
             <div class="filter__tags">
               <div
@@ -127,20 +127,25 @@ export default {
   },
   created: async function() {
     this.pictures[this.currentTab] = await fetchData(this.currentTab);
+
     if (this.filterTags.length == 0) {
       this.filteredPictures = this.pictures[this.currentTab];
       this.paginationHandler(1);
+
     } else {
       this.filteredPictures = filterPictures(
         this.filterTags,
         this.pictures[this.currentTab]
       );
+
       this.paginationHandler(1);
     }
 
     // Подсчет картин по видам исполнения
     this.works.worksArr.forEach((work) => {
-      work.worksCount = this.pictures[this.currentTab].filter((picture) =>picture.work == work.work).length;
+      work.worksCount = this.pictures[this.currentTab].filter(
+        (picture) => picture.work == work.work
+      ).length;
     });
   },
   data() {
@@ -160,59 +165,62 @@ export default {
       showVariant: "table",
 
       works: {
+        id: "works",
         title: "Работы",
+
         worksArr: [
           {
             id: "painting ",
             work: "painting",
             plotStyle: "Живопись",
-            worksCount: 383,
+            worksCount: 0,
           },
           {
             id: "drawings-illustrations",
             work: "drawings-illustrations",
             plotStyle: "Рисунки и иллюстрации",
-            worksCount: 110,
+            worksCount: 0,
           },
           {
             id: "theatrical-decorative",
             work: "theatrical-decorative",
             plotStyle: "Театрально-декорационное",
-            worksCount: 22,
+            worksCount: 0,
           },
           {
             id: "graphic",
             work: "graphic",
             plotStyle: "Графика",
-            worksCount: 22,
+            worksCount: 0,
           },
           {
             id: "engraving",
             work: "engraving",
             plotStyle: "Гравюра",
-            worksCount: 10,
+            worksCount: 0,
           },
           {
             id: "poster",
             work: "poster",
             plotStyle: "Плакат",
-            worksCount: 9,
+            worksCount: 0,
           },
           {
             id: "sculpture",
             work: "sculpture",
             plotStyle: "Скульптура",
-            worksCount: 5,
+            worksCount: 0,
           },
           {
             id: "decorative",
             work: "decorative",
             plotStyle: "Декоративно-прикладное",
-            worksCount: 2,
+            worksCount: 0,
           },
         ],
       },
       plots: {
+        id: "plots",
         title: "Сюжет",
         searchInput: true,
         fold: false,
@@ -299,6 +307,7 @@ export default {
         ],
       },
       styles: {
+        id: "styles",
         title: "Стили",
         searchInput: false,
         fold: true,
@@ -361,6 +370,7 @@ export default {
         ],
       },
       technics: {
+        id: "technics",
         title: "ТЕХНИКА",
         searchInput: true,
         fold: false,
@@ -441,6 +451,7 @@ export default {
         ],
       },
       period: {
+        id: "period",
         title: "ПЕРИОД",
         searchInput: false,
         fold: false,
@@ -476,25 +487,40 @@ export default {
       });
       e.target.classList.add("active__tab");
       if (this.pictures[e.target.id].length) {
+
         this.currentTab = e.target.id;
+        this.filteredPictures = filterPictures(
+          this.filterTags,
+          this.pictures[this.currentTab]
+        );
+
         // Подсчет картин по видам исполнения
         this.works.worksArr.forEach((work) => {
           work.worksCount = this.pictures[this.currentTab].filter(
             (picture) => picture.work == work.work
           ).length;
         });
+
         this.paginationHandler(1);
+
       } else {
         this.currentTab = e.target.id;
         this.pictures[this.currentTab] = await fetchData(e.target.id);
-        this.paginationHandler(1);
+        this.filteredPictures = filterPictures(
+          this.filterTags,
+          this.pictures[this.currentTab]
+        );
+
         // Подсчет картин по видам исполнения
         this.works.worksArr.forEach((work) => {
           work.worksCount = this.pictures[this.currentTab].filter(
             (picture) => picture.work == work.work
           ).length;
         });
+
+        this.paginationHandler(1);
       }
+
     },
 
     viewsHandler: function(id) {
@@ -546,23 +572,62 @@ export default {
     },
 
     paginationHandler: function(id) {
+
       this.showPictures = this.filteredPictures.slice(
         id * this.offset - this.offset,
         id * this.offset
       );
+
       this.curentPaginationItem = id;
     },
-    quickSearch: function(value) {
-      // console.log(value);
+    quickSearch: function(value, id) {
+      this[id].dataArr
+        .filter(
+          (item) =>
+            item.plotStyle.toLowerCase().indexOf(value.toLowerCase()) > -1
+        )
+        .forEach((filterTag) => {
+          this[id].dataArr.find(
+            (elem) => elem.id === filterTag.id
+          ).checked = true; // Отмечает отфильтрованные чекбоксы в тру
+          this.filterHandler(filterTag);
+        });
     },
-    rangeSearch: function(value, id) {
-      // console.log(value, id);
+    rangeSearch: function(start, end) {
+      if (start == null && end == null) {
+        return null;
+      }
+
+      let title = "";
+      if ((end == 0 || end == null) && start > 0) {
+        title = `от ${start}`;
+      }
+
+      if ((start == 0 || start == null) && end > 0) {
+        title = `до ${end}`;
+      }
+
+      if (start > 0 && end > 0) {
+        title = `от ${start} до ${end}`;
+      }
+
+      const rangeObj = {
+        range: true,
+        rangeStart: start,
+        rangeEnd: end,
+        plotStyle: title,
+      };
+
+      this.filterHandler(rangeObj);
     },
   },
 };
 </script>
 
 <style lang="sass" scoped>
+
+[v-cloak]
+  display: none
 .catalog
     padding: 60px 0
     .container
@@ -630,6 +695,7 @@ export default {
             display: flex
             flex-wrap: wrap
             align-items: center
+            padding-right: 40px
         .filter__tag
             padding: 2px 30px 0px 20px
             font-family: Helvetica,sans-serif
@@ -645,14 +711,13 @@ export default {
             position: relative
             cursor: pointer
             margin-bottom: 5px
+            margin-right: 10px
             span
                 width: 6px
                 height: 6px
                 position: absolute
                 right: 12px
                 bottom: calc( 50% - -7px )
-        .filter__tag + .filter__tag
-            margin-left: 10px
 
     .pictures__wrapper
         display: flex
@@ -671,8 +736,13 @@ export default {
         color: #4B4B4B;
         margin-bottom: 20px
         transition: all 1s
+        .picture__img
+            height: 317px
         img
+            width: 100%
             max-width: 100%
+            height: 100%
+
         .picture__title
             margin-top: 10px
             font-weight: normal
@@ -727,6 +797,8 @@ export default {
           display: block
     .picture__item
         width: 200px
+        .picture__img
+          height: 230px
 
 
 @media screen and (max-width: 768px)
@@ -740,4 +812,7 @@ export default {
     .picture__item
         margin: 5px
         width: 120px
+        .picture__img
+          height: 135px
+
 </style>

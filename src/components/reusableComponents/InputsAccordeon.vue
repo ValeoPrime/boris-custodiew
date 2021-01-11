@@ -6,25 +6,36 @@
     <div class="panel">
       <input
         v-if="data.searchInput"
-        v-on:input="$emit('quickSearch', $event.target.value)"
+        v-on:keypress.enter="
+          $emit('quickSearch', quickSearchValue, data.id),
+            (quickSearchValue = null)
+        "
+        v-model="quickSearchValue"
         class="search__input"
         type="text"
         placeholder="Быстрый поиск"
+        pattern="^[А-Яа-яЁё\s]+$"
       />
       <div v-if="data.rangeInput" class="range__wrapper">
         <input
-          type="text"
-          v-on:input="
-            $emit('rangeSearch', $event.target.value, $event.target.id)
+          type="number"
+          v-model="rangeSearchStart"
+          v-on:keypress.enter="
+            $emit('rangeSearch', rangeSearchStart, rangeSearchEnd),
+              (rangeSearchStart = null),
+              (rangeSearchEnd = null)
           "
           class="range__input"
           id="start"
           placeholder="c"
         />
         <input
-          type="text"
-          v-on:input="
-            $emit('rangeSearch', $event.target.value, $event.target.id)
+          type="number"
+          v-model="rangeSearchEnd"
+          v-on:keypress.enter="
+            $emit('rangeSearch', rangeSearchStart, rangeSearchEnd),
+              (rangeSearchStart = null),
+              (rangeSearchEnd = null)
           "
           class="range__input"
           id="end"
@@ -70,7 +81,11 @@
 export default {
   props: ["data"],
   data() {
-    return {};
+    return {
+      quickSearchValue: null,
+      rangeSearchStart: null,
+      rangeSearchEnd: null,
+    };
   },
   computed: {
     viewInputs: function() {

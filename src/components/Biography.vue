@@ -1,5 +1,5 @@
 <template>
-  <section class="biography">
+  <section class="biography" id="biography">
     <div class="container">
       <div class="biographyTitle__wrap">
         <h2 class="biography__title">биография</h2>
@@ -8,7 +8,6 @@
         </div>
       </div>
       <div class="biography__wrap">
-
         <div
           class="inner__wrap"
           v-for="fact in moreBiographyFacts"
@@ -33,31 +32,6 @@ import ReadMore from "@/components/reusableComponents/ReadMore.vue";
 export default {
   data: function() {
     return {
-      biographyFacts: [
-        {
-          text: `Борис Кустодиев родился 7 марта 1878 года в Астрахани. Отца, преподавателя духовной семинарии, не стало, когда мальчику было чуть
-            больше года. Мать осталась вдовой в 25 лет и содержала четверых
-            детей.`,
-          year: null,
-        },
-        {
-          text: `Борис сначала учился в церковно-приходской школе, потом в гимназии.
-              Когда ему было девять лет, в город привезли выставку
-              художников-передвижников. Мальчика настолько впечатлила живопись,
-              что он твердо решил научиться рисовать так же искусно. Мать нашла
-              деньги, чтобы Борис смог брать уроки у известного в Астрахани
-              художника Павла Власова.`,
-          year: 1887,
-        },
-        {
-          text: `Окончив семинарию, в 1896 году Кустодиев отправился учиться в
-              Москву, но в художественную школу его не приняли: Борису уже
-              исполнилось 18 и он был слишком взрослым. Тогда Кустодиев поехал в
-              Петербург, где подал документы в Высшее художественное училище при
-              Академии художеств.`,
-          year: 1896,
-        },
-      ],
       moreBiographyFacts: [
         {
           text: `Борис Кустодиев родился 7 марта 1878 года в Астрахани. Отца, преподавателя духовной семинарии, не стало, когда мальчику было чуть
@@ -85,16 +59,13 @@ export default {
       ],
     };
   },
-
   components: {
     SocialButtons,
     ReadMore,
   },
-
   methods: {
     moreFacts: function(event) {
       if(this.moreBiographyFacts.length < 4) {
-
         fetch("./data/facts.json")
         .then((response) => {
           return response.json();
@@ -105,15 +76,13 @@ export default {
         });
       }
       if(this.moreBiographyFacts.length > 3) {
-        this.moreBiographyFacts = this.biographyFacts
+        this.moreBiographyFacts = this.moreBiographyFacts.splice(0, 3)
         event.target.innerHTML = 'читать больше'
       }
-
     },
   },
 };
 </script>
-
 <style lang="sass">
 .biography
     padding: 100px 0
@@ -179,5 +148,4 @@ export default {
       position: absolute
       bottom: -74px
       left: calc( 50% - 130px )
-
 </style>
