@@ -19,7 +19,7 @@
         </div>
 
         <div class="readmore__wrap" v-on:click.prevent="moreFacts($event)">
-          <ReadMore />
+          <ReadMore :hide="hide" />
         </div>
       </div>
     </div>
@@ -57,6 +57,7 @@ export default {
           year: 1896,
         },
       ],
+      hide: false,
     };
   },
   components: {
@@ -64,20 +65,22 @@ export default {
     ReadMore,
   },
   methods: {
-    moreFacts: function(event) {
-      if(this.moreBiographyFacts.length < 4) {
+    moreFacts: function() {
+      if (this.moreBiographyFacts.length < 4) {
         fetch("./data/facts.json")
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          this.moreBiographyFacts = this.moreBiographyFacts.concat(data.facts)
-          event.target.innerHTML = 'скрыть'
-        });
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            this.moreBiographyFacts = this.moreBiographyFacts.concat(
+              data.facts
+            );
+            this.hide = true;
+          });
       }
-      if(this.moreBiographyFacts.length > 3) {
-        this.moreBiographyFacts = this.moreBiographyFacts.splice(0, 3)
-        event.target.innerHTML = 'читать больше'
+      if (this.moreBiographyFacts.length > 3) {
+        this.moreBiographyFacts = this.moreBiographyFacts.splice(0, 3);
+        this.hide = false;
       }
     },
   },

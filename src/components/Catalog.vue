@@ -1,44 +1,31 @@
 <template>
-  <section class="catalog" >
+  <section class="catalog">
     <div class="container">
       <div class="tabs__container">
         <div class="catalog__tabs">
           <ul class="catalog__tabs__list">
             <li
-              v-on:click="tabsHandler($event)"
-              class="catalog__tab__item active__tab"
-              id="rarity"
-            >
-              Раритет
-            </li>
-            <li
+              v-for="tab in catalogTabs"
               v-on:click="tabsHandler($event)"
               class="catalog__tab__item"
-              id="new"
+              :class="{ active__tab: tab.id === currentTab }"
+              :id="tab.id"
+              :key="tab.id"
             >
-              Новые
-            </li>
-            <li
-              v-on:click="tabsHandler($event)"
-              class="catalog__tab__item"
-              id="antiques"
-            >
-              Антиквариат
-            </li>
-            <li
-              v-on:click="tabsHandler($event)"
-              class="catalog__tab__item"
-              id="philately"
-            >
-              Филателия
+              {{ tab.title }}
             </li>
           </ul>
         </div>
       </div>
 
       <div class="catalog__inner">
-        <div v-on:click="showFilters" class="filters__mobile">Фильтры</div>
-        <div class="catalog__filters">
+        <div v-on:click="showFilters = !showFilters" class="filters__mobile">
+          Фильтры
+        </div>
+        <div
+          class="catalog__filters"
+          :class="{ grid: gridView, filters__show: showFilters }"
+        >
           <TextAccordion
             v-bind:works="works"
             v-on:addFilter="filterHandler"
@@ -87,6 +74,7 @@
               class="picture__item"
               v-for="(picture, index) in showPictures"
               :key="picture.year + index"
+              :class="{ gridItem: gridView }"
             >
               <div class="picture__img">
                 <img :src="picture.img" alt="picture" />
@@ -116,7 +104,7 @@ import ViewsVariants from "@/components/reusableComponents/ViewsVariants.vue";
 import TextAccordion from "@/components/reusableComponents/TextAccordion.vue";
 import InputsAccordeon from "@/components/reusableComponents/InputsAccordeon.vue";
 import Pagination from "@/components/reusableComponents/Pagination.vue";
-import { fetchData, grid, table, filterPictures } from "@/helpers.js";
+import { fetchData, filterPictures, rangeFilterObj } from "@/helpers.js";
 
 export default {
   components: {
@@ -130,16 +118,13 @@ export default {
 
     if (this.filterTags.length == 0) {
       this.filteredPictures = this.pictures[this.currentTab];
-      this.paginationHandler(1);
-
     } else {
       this.filteredPictures = filterPictures(
         this.filterTags,
         this.pictures[this.currentTab]
       );
-
-      this.paginationHandler(1);
     }
+    this.paginationHandler(1);
 
     // Подсчет картин по видам исполнения
     this.works.worksArr.forEach((work) => {
@@ -161,8 +146,16 @@ export default {
       filteredPictures: [],
       filterTags: [],
       showPictures: [],
+      catalogTabs: [
+        { title: "Раритет", id: "rarity" },
+        { title: "Новые", id: "new" },
+        { title: "Антиквариат", id: "antiques" },
+        { title: "Филателия", id: "philately" },
+      ],
       curentPaginationItem: 0,
       showVariant: "table",
+      gridView: false,
+      showFilters: false,
 
       works: {
         id: "works",
@@ -481,46 +474,27 @@ export default {
   },
   methods: {
     tabsHandler: async function(e) {
-      const allTabs = document.querySelectorAll(".catalog__tab__item");
-      allTabs.forEach((tab) => {
-        tab.classList.remove("active__tab");
-      });
-      e.target.classList.add("active__tab");
+      this.currentTab = e.target.id;
       if (this.pictures[e.target.id].length) {
-
-        this.currentTab = e.target.id;
         this.filteredPictures = filterPictures(
           this.filterTags,
           this.pictures[this.currentTab]
         );
-
-        // Подсчет картин по видам исполнения
-        this.works.worksArr.forEach((work) => {
-          work.worksCount = this.pictures[this.currentTab].filter(
-            (picture) => picture.work == work.work
-          ).length;
-        });
-
-        this.paginationHandler(1);
-
       } else {
-        this.currentTab = e.target.id;
         this.pictures[this.currentTab] = await fetchData(e.target.id);
         this.filteredPictures = filterPictures(
           this.filterTags,
           this.pictures[this.currentTab]
         );
-
-        // Подсчет картин по видам исполнения
-        this.works.worksArr.forEach((work) => {
-          work.worksCount = this.pictures[this.currentTab].filter(
-            (picture) => picture.work == work.work
-          ).length;
-        });
-
-        this.paginationHandler(1);
       }
+      // Подсчет картин по видам исполнения
+      this.works.worksArr.forEach((work) => {
+        work.worksCount = this.pictures[this.currentTab].filter(
+          (picture) => picture.work == work.work
+        ).length;
+      });
 
+      this.paginationHandler(1);
     },
 
     viewsHandler: function(id) {
@@ -528,18 +502,8 @@ export default {
     },
 
     changeViews: function(id) {
-      const catalogFilters = document.querySelector(".catalog__filters");
-      const pictures = document.querySelectorAll(".picture__item");
-
-      id == "grid"
-        ? grid(catalogFilters, pictures)
-        : table(catalogFilters, pictures);
+      id === "grid" ? (this.gridView = true) : (this.gridView = false);
       this.showVariant = id;
-    },
-
-    showFilters: function() {
-      const filter = document.querySelector(".catalog__filters");
-      filter.classList.toggle("filters__show");
     },
 
     filterHandler: function(item) {
@@ -549,17 +513,14 @@ export default {
           this.filterTags,
           this.pictures[this.currentTab]
         );
-
-        this.paginationHandler(1);
       } else {
         this.filterTags.push(item);
         this.filteredPictures = filterPictures(
           this.filterTags,
           this.pictures[this.currentTab]
         );
-
-        this.paginationHandler(1);
       }
+      this.paginationHandler(1);
     },
 
     removeTag: function(item) {
@@ -572,7 +533,6 @@ export default {
     },
 
     paginationHandler: function(id) {
-
       this.showPictures = this.filteredPictures.slice(
         id * this.offset - this.offset,
         id * this.offset
@@ -594,31 +554,7 @@ export default {
         });
     },
     rangeSearch: function(start, end) {
-      if (start == null && end == null) {
-        return null;
-      }
-
-      let title = "";
-      if ((end == 0 || end == null) && start > 0) {
-        title = `от ${start}`;
-      }
-
-      if ((start == 0 || start == null) && end > 0) {
-        title = `до ${end}`;
-      }
-
-      if (start > 0 && end > 0) {
-        title = `от ${start} до ${end}`;
-      }
-
-      const rangeObj = {
-        range: true,
-        rangeStart: start,
-        rangeEnd: end,
-        plotStyle: title,
-      };
-
-      this.filterHandler(rangeObj);
+      this.filterHandler(rangeFilterObj(start, end));
     },
   },
 };
@@ -680,6 +616,11 @@ export default {
         max-width: 318px
         padding-right: 118px
         transition: all 1s
+    .grid
+        min-width: 225px
+        max-width: 200px
+        padding-right: 40px
+
 
 
 
@@ -749,6 +690,14 @@ export default {
             font-size: inherit
             margin-block-start: 0
             margin-block-end: 0
+    .gridItem
+        width: 200px
+        .picture__img
+          height: 226px
+        .picture__title
+          padding: 0 10px
+          margin-top: 10px
+
 
     .empty__message
       font-family: Yeseva One,sans-serif
@@ -814,5 +763,4 @@ export default {
         width: 120px
         .picture__img
           height: 135px
-
 </style>

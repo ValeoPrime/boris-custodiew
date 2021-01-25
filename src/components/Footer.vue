@@ -2,10 +2,9 @@
   <footer class="footer">
     <div class="container">
       <ul class="footer__nav">
-        <li class="nav__list__item"><a href="#">биография</a></li>
-        <li class="nav__list__item"><a href="#">творчество</a></li>
-        <li class="nav__list__item"><a href="#">картины</a></li>
-        <li class="nav__list__item"><a href="#">музеи</a></li>
+        <li class="nav__list__item" v-for="(item, i) of navTitles" :key="i">
+          <a href="#">{{ navTitles[i] }}</a>
+        </li>
       </ul>
     </div>
     <div class="social__buttons__wrapper">
@@ -18,6 +17,11 @@
 import SocialButtonLight from "@/components/reusableComponents/SocialButtonLight.vue";
 
 export default {
+  data: function() {
+    return {
+      navTitles: ["биография", "творчество", "картины", "музеи"],
+    };
+  },
   components: {
     SocialButtonLight,
   },
@@ -52,6 +56,4 @@ export default {
       .nav__list__item + .nav__list__item
         margin: 0
         margin-top: 20px
-
-
 </style>

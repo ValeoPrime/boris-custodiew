@@ -1,6 +1,10 @@
 <template>
   <div class="accordion__wrapper">
-    <button v-on:click="accordionHandler($event)" class="accordion active">
+    <button
+      v-on:click="accordionHandler($event)"
+      class="accordion"
+      :class="{ active: panelShow }"
+    >
       {{ data.title }}
     </button>
     <div class="panel">
@@ -16,32 +20,8 @@
         placeholder="Быстрый поиск"
         pattern="^[А-Яа-яЁё\s]+$"
       />
-      <div v-if="data.rangeInput" class="range__wrapper">
-        <input
-          type="number"
-          v-model="rangeSearchStart"
-          v-on:keypress.enter="
-            $emit('rangeSearch', rangeSearchStart, rangeSearchEnd),
-              (rangeSearchStart = null),
-              (rangeSearchEnd = null)
-          "
-          class="range__input"
-          id="start"
-          placeholder="c"
-        />
-        <input
-          type="number"
-          v-model="rangeSearchEnd"
-          v-on:keypress.enter="
-            $emit('rangeSearch', rangeSearchStart, rangeSearchEnd),
-              (rangeSearchStart = null),
-              (rangeSearchEnd = null)
-          "
-          class="range__input"
-          id="end"
-          placeholder="по"
-        />
-      </div>
+      <RangeInput v-if="data.rangeInput" v-on:rangeSearch="rangeSearch" />
+
       <div v-for="item in viewInputs" :key="item.id" class="filter__item">
         <label class="custom-checkbox">
           <input
@@ -56,7 +36,7 @@
       </div>
       <div v-if="data.fold" class="accordion__wrapper--inner">
         <button v-on:click="accordionHandler($event)" class="accordion--inner">
-          Все элементы
+          {{ moreCheckboxShow ? "Скрыть" : "Все элементы" }}
         </button>
         <div class="panel panel--inner">
           <div v-for="item in foldInputs" :key="item.id" class="filter__item">
@@ -78,50 +58,49 @@
 </template>
 
 <script>
+import RangeInput from "@/components/reusableComponents/RangeInput.vue";
+
 export default {
+  components: {
+    RangeInput,
+  },
   props: ["data"],
   data() {
     return {
       quickSearchValue: null,
-      rangeSearchStart: null,
-      rangeSearchEnd: null,
+      panelShow: true,
+      moreCheckboxShow: false,
     };
   },
   computed: {
     viewInputs: function() {
-      if (this.data.fold) {
-        return this.data.dataArr.slice(0, 7);
-      } else {
-        return this.data.dataArr;
-      }
+      return this.data.fold ? this.data.dataArr.slice(0, 7) : this.data.dataArr;
     },
     foldInputs: function() {
-      if (this.data.fold) {
-        return this.data.dataArr.slice(7, this.data.dataArr.length);
-      } else {
-        return false;
-      }
+      return this.data.fold
+        ? this.data.dataArr.slice(7, this.data.dataArr.length)
+        : false;
     },
   },
   methods: {
     accordionHandler: function(e) {
-      e.target.classList.toggle("active");
       const panel = e.target.nextElementSibling;
+      this.panelShow = !this.panelShow;
       if (panel.style.maxHeight) {
         panel.style.maxHeight = null;
-        e.target.classList.contains("accordion--inner")
-          ? (e.target.innerHTML = "Все элементы")
-          : null;
+        this.moreCheckboxShow = false;
       } else {
         panel.style.maxHeight = panel.scrollHeight + "px";
-        e.target.classList.contains("accordion--inner")
-          ? (e.target.innerHTML = "Скрыть")
-          : null;
+        this.moreCheckboxShow = true;
       }
+    },
+
+    rangeSearch: function(start, end) {
+      this.$emit("rangeSearch", start, end);
     },
   },
   mounted: function() {
-    const panels = document.querySelectorAll(".panel");
+    const panels = this.$el.querySelectorAll(".panel");
 
     panels.forEach((panel) => {
       if (panel.classList.contains("panel--inner")) {
@@ -248,20 +227,4 @@ export default {
     margin-top: 20px
     margin-bottom: 10px
     outline: none
-.range__wrapper
-    display: flex
-.range__input
-    font-family: Helvetica, sans-serif
-    width: 80px
-    font-size: 12px;
-    line-height: 26px;
-    padding: 5px 5px 5px 10px
-    color: #202020;
-    border: 1px solid #E5E5E5;
-    height: 29px
-    margin: 20px 0 10px
-    outline: none
-
-.range__input + .range__input
-    margin-left: 10px
 </style>

@@ -3,22 +3,14 @@
     <h2 class="museums__title">музеи</h2>
     <div id="map" style="width: 100%; height: 514px"></div>
     <div class="museums__adresses">
-      <div class="museum__adress">
-        <h4 class="museum__title"> <a href="#">Русский музей</a> </h4>
+      <div class="museum__adress" v-for="museum of museums" :key="museum.title">
+        <h4 class="museum__title">
+          <a href="#">{{ museum.title }}</a>
+        </h4>
         <div class="musseum__adress__descr">
-          191186, Санкт-Петербург, <br> Инженерная ул., 4, <br> +7 (812) 595-42-40
-        </div>
-      </div>
-      <div class="museum__adress">
-        <h4 class="museum__title"> <a href="#">Третьяковская галерея</a> </h4>
-        <div class="musseum__adress__descr">
-          119017, Москва, <br> Лаврушинский переулок,10 <br> +7 (495) 957-07-27
-        </div>
-      </div>
-      <div class="museum__adress">
-        <h4 class="museum__title"> <a href="#">Мультимедиа Арт Музей</a> </h4>
-        <div class="musseum__adress__descr">
-          105064, Москва, <br> Гороховский переулок, 7 <br> +7 (495) 632–16–81
+          {{ museum.adress[0] }} <br />
+          {{ museum.adress[1] }} <br />
+          {{ museum.adress[2] }}
         </div>
       </div>
     </div>
@@ -54,6 +46,36 @@ export default {
 
       myMap.geoObjects.add(myPlacemark);
     });
+  },
+  data: function() {
+    return {
+      museums: [
+        {
+          title: "Русский музей",
+          adress: [
+            "191186, Санкт-Петербург",
+            "Инженерная ул., 4,",
+            "+7 (812) 595-42-40",
+          ],
+        },
+        {
+          title: "Третьяковская галерея",
+          adress: [
+            "119017, Москва,",
+            "Лаврушинский переулок,10",
+            "+7 (495) 957-07-27",
+          ],
+        },
+        {
+          title: "Мультимедиа Арт Музей",
+          adress: [
+            "105064, Москва,",
+            "Гороховский переулок 7",
+            "+7 (495) 632–16–81",
+          ],
+        },
+      ],
+    };
   },
 };
 </script>
@@ -129,5 +151,4 @@ export default {
   .museum__adress
       border-left: 0
       border-bottom: 1px solid #E5E5E5;
-
 </style>

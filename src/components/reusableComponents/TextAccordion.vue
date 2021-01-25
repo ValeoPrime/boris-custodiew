@@ -1,14 +1,20 @@
 <template>
   <div class="accordion__wrapper">
-    <button v-on:click="accordionHandler($event)" class="accordion active">
+    <button
+      v-on:click="accordionHandler($event)"
+      class="accordion"
+      :class="{ active: panelShow }"
+    >
       {{ works.title }}
     </button>
-    <div class="panel panel__show">
+    <div class="panel" :class="{ panel__show: panelShow }">
       <div v-for="work in works.worksArr" :key="work.id" class="filter__item">
         <div v-on:click="filterHandler(work, $event)" class="filter__title">
           {{ work.plotStyle }}
         </div>
-        <span v-on:click="filterHandler(work, $event)" class="filter__data">+</span>
+        <span v-on:click="filterHandler(work, $event)" class="filter__data"
+          >+</span
+        >
         <div class="picture__count">{{ work.worksCount }}</div>
       </div>
     </div>
@@ -21,13 +27,13 @@ export default {
   data() {
     return {
       data: null,
+      panelShow: true,
     };
   },
   methods: {
     accordionHandler: function(e) {
-      e.target.classList.toggle("active");
+      this.panelShow = !this.panelShow;
       const panel = e.target.nextElementSibling;
-      panel.classList.toggle("panel__show");
       if (panel.style.maxHeight) {
         panel.style.maxHeight = null;
       } else {
@@ -35,7 +41,6 @@ export default {
       }
     },
     filterHandler: function(work, e) {
-
       e.target.classList.contains("filter__title")
         ? e.target.nextElementSibling.classList.toggle("filter__data--show")
         : e.target.classList.toggle("filter__data--show");
@@ -44,7 +49,7 @@ export default {
     },
   },
   mounted: function() {
-    const panels = document.querySelectorAll(".panel");
+    const panels = this.$el.querySelectorAll(".panel");
 
     panels.forEach((panel) => {
       panel.style.maxHeight = panel.scrollHeight + "px";

@@ -1,9 +1,13 @@
 <template>
-  <a class="read__more" href="#"><button>читать больше</button></a>
+  <a class="read__more" href="#"
+    ><button>{{ hide ? "скрыть" : "читать больше" }}</button></a
+  >
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["hide"],
+};
 </script>
 
 <style lang="sass" scoped>

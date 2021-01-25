@@ -9,23 +9,31 @@ export const fetchData = async function fetchData(path) {
   return result;
 };
 
-export const grid = function(catalogFilters, pictures) {
-  catalogFilters.style.paddingRight = 40 + "px";
-  catalogFilters.style.minWidth = 225 + "px";
-  catalogFilters.style.maxWidth = 200 + "px";
-  pictures.forEach((picture) => {
-    picture.style.width = 200 + "px";
-    picture.firstChild.style.height = 226 + "px";
-  });
-};
-export const table = function(catalogFilters, pictures) {
-  catalogFilters.style.paddingRight = 118 + "px";
-  catalogFilters.style.minWidth = 318 + "px";
-  catalogFilters.style.maxWidth = 318 + "px";
-  pictures.forEach((picture) => {
-    picture.style.width = 280 + "px";
-    picture.firstChild.style.height = 317 + "px";
-  });
+export const rangeFilterObj = (start, end) => {
+  if (start == null && end == null) {
+    return null;
+  }
+
+  let title = "";
+  if ((end == 0 || end == null) && start > 0) {
+    title = `от ${start}`;
+  }
+
+  if ((start == 0 || start == null) && end > 0) {
+    title = `до ${end}`;
+  }
+
+  if (start > 0 && end > 0) {
+    title = `от ${start} до ${end}`;
+  }
+
+  const rangeObj = {
+    range: true,
+    rangeStart: start,
+    rangeEnd: end,
+    plotStyle: title,
+  };
+  return rangeObj;
 };
 
 export const filterPictures = function(filterTags, pictures) {

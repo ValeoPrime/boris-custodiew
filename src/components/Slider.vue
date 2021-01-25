@@ -1,7 +1,7 @@
 <template>
   <section class="slider">
     <div class="container">
-      <div class="carousel">
+      <div class="carousel" ref="carousel">
         <div class="carousel__pagination">
           <div class="carousel__pagination__wrapper">
             <div
@@ -21,7 +21,6 @@
             <transition name="fade">
               <img
                 class="carousel__item"
-
                 :src="sliderList[sliderActive - 1].img"
                 :key="sliderActive"
                 alt="image"
@@ -118,7 +117,7 @@ export default {
       this.sliderOffsetStep = sliderBody.clientWidth;
       this.sliderAllCount = this.sliderList.length;
 
-      const carousel = document.querySelector(".carousel");
+      const carousel = this.$el.querySelector(".carousel");
 
       let startTouchPos = 0;
       let endTouchPos = 0;
@@ -172,7 +171,7 @@ export default {
     prevSlide: function() {
       if (this.sliderActive > 1) {
         this.sliderActive -= 1;
-this.openSlide(this.sliderActive);
+        this.openSlide(this.sliderActive);
         this.disableSwitch = false;
         this.disableRightSwitch ? (this.disableRightSwitch = false) : null;
         if (this.sliderActive == 1) {

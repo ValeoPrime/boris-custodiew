@@ -1,19 +1,23 @@
 <template>
   <nav class="header__navigation">
     <div class="header__content__search">
-      <input class="search" type="text" />
+      <input class="search" type="text" :class="{ show: searchShow }" />
       <img
-        v-on:click="searchHandler"
+        v-on:click="this.searchShow = !this.searchShow"
         src="@/assets/img/icons/serch-icon.svg"
         alt="serch"
         class="search__icon"
+        :class="{ 'icon-show': searchShow }"
       />
     </div>
     <ul class="navigation__list">
-      <li class="navigation__list__item"><a href="#">биография</a></li>
-      <li class="navigation__list__item"><a href="#">творчество</a></li>
-      <li class="navigation__list__item"><a href="#">картины</a></li>
-      <li class="navigation__list__item"><a href="#">музеи</a></li>
+      <li
+        class="navigation__list__item"
+        v-for="(item, i) of navTitles"
+        :key="i"
+      >
+        <a href="#">{{ navTitles[i] }}</a>
+      </li>
     </ul>
 
     <div class="hamburger-menu">
@@ -23,10 +27,13 @@
       </label>
 
       <ul class="menu__box">
-        <li class="navigation__list__item menu__item"><a  href="#">Биография</a></li>
-        <li class="navigation__list__item menu__item"><a href="#">Творчество</a></li>
-        <li class="navigation__list__item menu__item"><a href="#">Картины</a></li>
-        <li class="navigation__list__item menu__item"><a href="#">Музеи</a></li>
+        <li
+          class="navigation__list__item menu__item"
+          v-for="(item, i) of navTitles"
+          :key="i"
+        >
+          <a href="#">{{ navTitles[i] }}</a>
+        </li>
       </ul>
     </div>
   </nav>
@@ -34,14 +41,11 @@
 
 <script>
 export default {
-  methods: {
-    searchHandler: function() {
-      const searchInput = document.querySelector(".search");
-      const searchIcon = document.querySelector(".search__icon");
-
-      searchInput.classList.toggle("show");
-      searchIcon.classList.toggle("icon-show");
-    },
+  data() {
+    return {
+      searchShow: false,
+      navTitles: ["биография", "творчество", "картины", "музеи"],
+    };
   },
 };
 </script>

@@ -18,22 +18,14 @@
 <script>
 export default {
   props: ["data", "offset", "curentPaginationItem"],
-  data() {
-    return {
-      //   paginationCount: Math.ceil(this.data.length / this.offset),
-    };
-  },
   computed: {
     paginationCount: function() {
-      if(Math.ceil(this.data.length / this.offset) == 1) {
-        return null
-      } else {
-        return Math.ceil(this.data.length / this.offset);
-      }
-
+      // Не создавать элемент пагинации если картинок меньше чем на 1 страницу
+      return Math.ceil(this.data.length / this.offset) == 1
+        ? null
+        : Math.ceil(this.data.length / this.offset);
     },
   },
-  methods: {},
 };
 </script>
 
@@ -63,5 +55,4 @@ export default {
 @media screen and (max-width: 768px)
   .pagination__wraper
     bottom: -10px
-
 </style>
